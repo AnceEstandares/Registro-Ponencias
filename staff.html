@@ -11,91 +11,155 @@
       --blue-lt:#e8f3ff; --gray:#f4f6fb; --text:#1a1a2e; --muted:#6b7a99;
       --border:#dce3f0; --green:#16a34a; --green-lt:#dcfce7;
       --red:#dc2626; --red-lt:#fee2e2; --yellow:#d97706; --yellow-lt:#fef3c7;
+      --purple:#7c3aed; --purple-lt:#ede9fe;
       --radius:12px; --shadow:0 4px 24px rgba(20,54,130,.10);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Source Sans 3',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;}
 
-    /* LOGIN */
-    #loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy-dk) 0%,var(--navy) 60%,var(--blue) 100%);padding:24px;}
-    .login-card{background:var(--white);border-radius:16px;padding:48px 40px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;}
-    .lock-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 8px 20px rgba(20,54,130,.3);}
+    /* ── LOGIN ── */
+    #loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,var(--navy-dk) 0%,var(--navy) 60%,var(--blue) 100%);padding:24px;}
+    .login-card{background:var(--white);border-radius:16px;padding:48px 40px;width:100%;max-width:400px;
+      box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;}
+    .lock-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--navy),var(--blue));
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      margin:0 auto 20px;box-shadow:0 8px 20px rgba(20,54,130,.3);}
     .login-card h2{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;color:var(--navy);margin-bottom:4px;}
-    .login-card p{font-size:13px;color:var(--muted);margin-bottom:24px;}
+    .login-card .sub{font-size:13px;color:var(--muted);margin-bottom:24px;}
     .login-err{color:var(--red);font-size:13px;margin-bottom:12px;display:none;}
-    .login-card input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:16px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;text-align:center;letter-spacing:.1em;margin-bottom:16px;}
+    .login-card input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;
+      font-family:'Source Sans 3',sans-serif;font-size:16px;color:var(--text);outline:none;
+      transition:border-color .2s,box-shadow .2s;text-align:center;letter-spacing:.1em;margin-bottom:16px;}
     .login-card input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,140,255,.15);}
 
-    /* HEADER */
+    /* ── APP ── */
     #appScreen{display:none;}
-    header{background:linear-gradient(135deg,var(--navy-dk),var(--navy));color:var(--white);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 16px rgba(0,0,0,.15);}
-    .staff-badge{background:rgba(21,140,255,.35);border:1px solid rgba(21,140,255,.5);color:#a8d4ff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;}
+    header{background:linear-gradient(135deg,var(--navy-dk),var(--navy));color:var(--white);
+      padding:18px 28px;display:flex;align-items:center;justify-content:space-between;
+      box-shadow:0 2px 16px rgba(0,0,0,.15);}
+    .staff-badge{background:rgba(21,140,255,.35);border:1px solid rgba(21,140,255,.5);color:#a8d4ff;
+      font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:.12em;
+      text-transform:uppercase;padding:3px 10px;border-radius:20px;}
     header h1{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;}
     header .sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px;}
+    .btn-ghost{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:white;
+      padding:8px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;}
 
-    /* CONTAINER */
-    .container{max-width:900px;margin:0 auto;padding:28px 20px 60px;}
+    .container{max-width:960px;margin:0 auto;padding:28px 20px 60px;}
 
-    /* STATS */
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
-    .stat-card{background:var(--white);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
-    .stat-card .num{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:900;color:var(--navy);}
-    .stat-card .lbl{font-size:12px;color:var(--muted);margin-top:4px;}
+    /* ── STATS ── */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
+    .stat-card{background:var(--white);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);}
+    .stat-card .num{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:var(--navy);}
+    .stat-card .lbl{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.3;}
     .stat-card.green .num{color:var(--green);}
     .stat-card.blue .num{color:var(--blue);}
+    .stat-card.purple .num{color:var(--purple);}
 
-    /* TABS */
-    .day-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
-    .tab{padding:10px 20px;border-radius:8px;border:1.5px solid var(--border);background:var(--white);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;}
-    .tab:hover{border-color:var(--blue);color:var(--navy);}
-    .tab.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+    /* ── PONENCIA ACTIVA BANNER ── */
+    .active-banner{border-radius:var(--radius);padding:14px 20px;margin-bottom:20px;
+      display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;}
+    .active-banner.on{background:var(--green-lt);border:1.5px solid var(--green);color:var(--green);}
+    .active-banner.off{background:#f1f5f9;border:1.5px solid var(--border);color:var(--muted);}
+    .active-banner .dot{width:10px;height:10px;border-radius:50%;background:currentColor;flex-shrink:0;}
+    .active-banner strong{font-family:'Montserrat',sans-serif;font-size:13px;}
 
-    /* LOOKUP */
+    /* ── LOOKUP ── */
     .lookup-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:24px;}
     .lookup-card h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
     .lookup-card .sub{font-size:13px;color:var(--muted);margin-bottom:18px;}
     .lookup-row{display:flex;gap:12px;}
-    .lookup-row input{flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:16px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;text-transform:uppercase;letter-spacing:.06em;}
+    .lookup-row input{flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;
+      font-family:'Source Sans 3',sans-serif;font-size:16px;color:var(--text);outline:none;
+      transition:border-color .2s,box-shadow .2s;text-transform:uppercase;letter-spacing:.06em;}
     .lookup-row input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,140,255,.15);}
-    .result-box{margin-top:20px;border-radius:10px;padding:20px;display:none;border:1.5px solid var(--border);}
-    .result-box.found{border-color:var(--green);background:var(--green-lt);}
-    .result-box.notfound{border-color:var(--red);background:var(--red-lt);}
-    .result-box.already{border-color:var(--yellow);background:var(--yellow-lt);}
-    .res-name{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;color:var(--navy);margin-bottom:6px;}
-    .res-meta{font-size:13px;color:var(--muted);margin-bottom:12px;}
-    .res-status{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;margin-bottom:14px;}
-    .res-status.ok{color:var(--green);}
-    .res-status.warn{color:var(--yellow);}
-    .res-status.err{color:var(--red);}
 
-    /* TABLE */
+    /* ── PERFIL ASISTENTE ── */
+    .perfil{display:none;margin-top:22px;}
+    .perfil-header{display:flex;align-items:flex-start;justify-content:space-between;
+      padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:20px;gap:16px;flex-wrap:wrap;}
+    .perfil-name{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;color:var(--navy);}
+    .perfil-meta{font-size:13px;color:var(--muted);margin-top:4px;}
+    .perfil-id{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;color:var(--blue);
+      background:var(--blue-lt);padding:4px 12px;border-radius:20px;}
+    .constancia-badge{display:inline-flex;align-items:center;gap:6px;
+      font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;
+      padding:6px 14px;border-radius:8px;}
+    .constancia-badge.si{background:var(--green-lt);color:var(--green);}
+    .constancia-badge.no{background:#f1f5f9;color:var(--muted);}
+
+    /* ── PONENCIAS DEL ASISTENTE ── */
+    .ponencias-checklist{}
+    .pcheck-day{margin-bottom:22px;}
+    .pcheck-day-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+    .pcheck-day-badge{background:var(--navy);color:var(--white);font-family:'Montserrat',sans-serif;
+      font-size:11px;font-weight:800;padding:4px 12px;border-radius:6px;}
+    .pcheck-day-title{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);}
+
+    .pcheck-item{display:flex;align-items:center;gap:14px;padding:13px 16px;
+      border:1.5px solid var(--border);border-radius:10px;margin-bottom:8px;
+      transition:border-color .2s,background .2s;}
+    .pcheck-item.asistio{border-color:var(--green);background:var(--green-lt);}
+    .pcheck-item.no-selec{border-color:var(--border);background:#f8faff;opacity:.55;}
+    .pcheck-item.activa{border-color:var(--blue);background:var(--blue-lt);}
+
+    .pcheck-estado{width:30px;height:30px;border-radius:8px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;font-size:14px;}
+    .pcheck-estado.ok{background:var(--green);color:white;}
+    .pcheck-estado.pending{background:var(--border);color:var(--muted);}
+    .pcheck-estado.active-now{background:var(--blue);color:white;animation:pulse 1.5s infinite;}
+    .pcheck-estado.no-reg{background:#e2e8f0;color:#94a3b8;}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(21,140,255,.4);}50%{box-shadow:0 0 0 6px rgba(21,140,255,0);}}
+
+    .pcheck-info{flex:1;}
+    .pcheck-tema{font-size:13px;font-weight:700;color:var(--navy);line-height:1.4;}
+    .pcheck-hora{font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--muted);margin-top:3px;}
+    .pcheck-hora .live{color:var(--blue);}
+
+    .btn-marcar{padding:8px 16px;border-radius:7px;border:none;cursor:pointer;
+      font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;
+      background:var(--navy);color:var(--white);transition:all .2s;white-space:nowrap;flex-shrink:0;}
+    .btn-marcar:hover{background:var(--blue);}
+    .btn-marcar:disabled{background:var(--green);cursor:default;}
+    .btn-marcar.no-reg{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
+
+    .not-found-box{background:var(--red-lt);border:1.5px solid var(--red);border-radius:10px;
+      padding:18px 20px;display:none;margin-top:18px;}
+    .not-found-box p{color:var(--red);font-weight:700;font-family:'Montserrat',sans-serif;font-size:14px;}
+
+    /* ── TABLA GLOBAL ── */
     .table-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
-    .table-header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;}
+    .table-header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;}
     .table-header h3{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800;color:var(--navy);}
-    .table-search{padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;outline:none;width:220px;}
+    .table-search{padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;outline:none;width:240px;}
     .table-search:focus{border-color:var(--blue);}
     table{width:100%;border-collapse:collapse;}
-    th{background:#f8faff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:12px 16px;text-align:left;}
-    td{padding:13px 16px;font-size:14px;border-top:1px solid var(--border);}
+    th{background:#f8faff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
+      letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:12px 14px;text-align:left;}
+    td{padding:12px 14px;font-size:13px;border-top:1px solid var(--border);vertical-align:middle;}
     tr:hover td{background:#fafbff;}
-    .chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;}
-    .chip.asistio{background:var(--green-lt);color:var(--green);}
-    .chip.pendiente{background:#f1f5f9;color:var(--muted);}
-    .btn-check{padding:7px 16px;border-radius:6px;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;background:var(--navy);color:var(--white);transition:all .2s;}
-    .btn-check:hover{background:var(--blue);}
-    .btn-check:disabled{background:var(--green);cursor:default;}
-    .empty-msg{text-align:center;padding:40px;color:var(--muted);font-size:14px;line-height:1.6;}
+    .chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;
+      font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;}
+    .chip.verde{background:var(--green-lt);color:var(--green);}
+    .chip.gris{background:#f1f5f9;color:var(--muted);}
+    .chip.morado{background:var(--purple-lt);color:var(--purple);}
+    .progress-bar{height:6px;background:var(--border);border-radius:4px;overflow:hidden;width:80px;display:inline-block;vertical-align:middle;margin-left:8px;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--blue));border-radius:4px;transition:width .4s;}
+    .empty-msg{text-align:center;padding:40px;color:var(--muted);font-size:14px;line-height:1.7;}
 
-    /* BTNS */
-    .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;letter-spacing:.04em;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;}
+    /* ── BTN ── */
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;
+      font-size:13px;font-weight:800;letter-spacing:.04em;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;}
     .btn-primary{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);box-shadow:0 4px 16px rgba(21,140,255,.3);}
     .btn-primary:hover{transform:translateY(-1px);}
-    .btn-ghost{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:white;padding:8px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;}
 
-    @media(max-width:600px){
+    @media(max-width:700px){
       .stats{grid-template-columns:1fr 1fr;}
       .lookup-row{flex-direction:column;}
       .table-search{width:100%;}
+      .pcheck-item{flex-wrap:wrap;}
     }
   </style>
 </head>
@@ -110,7 +174,7 @@
       </svg>
     </div>
     <h2>Acceso Staff</h2>
-    <p>Ingresa la contraseña para acceder al panel de control de asistencia.</p>
+    <p class="sub">Ingresa la contraseña para acceder al panel de control de asistencia.</p>
     <div class="login-err" id="loginErr">Contraseña incorrecta. Intenta de nuevo.</div>
     <input type="password" id="passInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()"/>
     <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="login()">Ingresar</button>
@@ -127,7 +191,10 @@
       </div>
       <div class="sub">18° Congreso Nacional de la NOM-001-SEDE · Mayo 2026</div>
     </div>
-    <button class="btn-ghost" onclick="logout()">Cerrar sesión</button>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span id="reloj" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.7);"></span>
+      <button class="btn-ghost" onclick="logout()">Cerrar sesión</button>
+    </div>
   </header>
 
   <div class="container">
@@ -135,21 +202,21 @@
     <!-- Stats -->
     <div class="stats">
       <div class="stat-card"><div class="num" id="statTotal">0</div><div class="lbl">Registros totales</div></div>
-      <div class="stat-card green"><div class="num" id="statHoy">0</div><div class="lbl" id="statHoyLbl">Asistencias hoy</div></div>
-      <div class="stat-card blue"><div class="num" id="statPend">0</div><div class="lbl">Pendientes hoy</div></div>
+      <div class="stat-card green"><div class="num" id="statAsist">0</div><div class="lbl">Check-ins registrados</div></div>
+      <div class="stat-card blue"><div class="num" id="statHoy">0</div><div class="lbl" id="statHoyLbl">En ponencia activa</div></div>
+      <div class="stat-card purple"><div class="num" id="statConst">0</div><div class="lbl">Con derecho a constancia</div></div>
     </div>
 
-    <!-- Day tabs -->
-    <div class="day-tabs">
-      <div class="tab active" onclick="setDay(0,this)">26 Mayo · Baja Tensión</div>
-      <div class="tab" onclick="setDay(1,this)">27 Mayo · Alta Tensión</div>
-      <div class="tab" onclick="setDay(2,this)">28 Mayo · Modificación NOM</div>
+    <!-- Banner ponencia activa -->
+    <div class="active-banner off" id="activeBanner">
+      <div class="dot"></div>
+      <div><strong id="activeTema">Sin ponencia activa en este momento</strong><br><span id="activeHora" style="font-size:12px;"></span></div>
     </div>
 
-    <!-- Lookup -->
+    <!-- ── LOOKUP ── -->
     <div class="lookup-card">
       <h3>Validar asistencia por ID</h3>
-      <div class="sub">Escribe el número de identificación del asistente y regístralo como presente.</div>
+      <p class="sub">Escribe el número de identificación del asistente para ver sus ponencias y marcar asistencia.</p>
       <div class="lookup-row">
         <input type="text" id="lookupInput" placeholder="NOM-XXXXXXXX" onkeydown="if(event.key==='Enter')buscarID()"/>
         <button class="btn btn-primary" onclick="buscarID()">
@@ -157,24 +224,43 @@
           Buscar
         </button>
       </div>
-      <div class="result-box" id="resultBox">
-        <div class="res-name" id="resName">—</div>
-        <div class="res-meta" id="resMeta">—</div>
-        <div class="res-status" id="resStatus">—</div>
-        <button class="btn btn-primary" id="resBtn" onclick="marcarAsistencia()" style="display:none;">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
-          Confirmar asistencia
-        </button>
+
+      <!-- Not found -->
+      <div class="not-found-box" id="notFoundBox">
+        <p>✗ ID no encontrado en el sistema</p>
+        <div style="font-size:13px;color:var(--red);margin-top:4px;" id="notFoundTxt"></div>
+      </div>
+
+      <!-- Perfil asistente -->
+      <div class="perfil" id="perfilBox">
+        <div class="perfil-header">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
+              <div class="perfil-name" id="pNombre">—</div>
+              <div class="perfil-id" id="pId">—</div>
+            </div>
+            <div class="perfil-meta" id="pMeta">—</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+            <div class="constancia-badge no" id="constBadge">— / 9 ponencias</div>
+            <div style="font-size:11px;color:var(--muted);">para constancia: 9/9</div>
+          </div>
+        </div>
+
+        <!-- Checklist de ponencias -->
+        <div class="ponencias-checklist" id="checklistBox"></div>
       </div>
     </div>
 
-    <!-- Table -->
+    <!-- ── TABLA GLOBAL ── -->
     <div class="table-card">
       <div class="table-header">
-        <h3>Lista de Asistentes Registrados</h3>
-        <input class="table-search" id="tableSearch" type="text" placeholder="Buscar nombre, ID..." oninput="renderTabla(this.value)"/>
+        <h3>Todos los Asistentes</h3>
+        <input class="table-search" id="tableSearch" type="text" placeholder="Buscar nombre, ID, empresa..." oninput="renderTabla(this.value)"/>
       </div>
-      <div id="tableWrap"><div class="empty-msg">Conecta tu Google Sheet para ver los datos aquí.<br><small>Ver instrucciones en el archivo <strong>INSTRUCCIONES.md</strong></small></div></div>
+      <div id="tableWrap">
+        <div class="empty-msg">Los registros aparecerán aquí una vez que configures el Google Sheet.<br><small>Consulta el archivo <strong>INSTRUCCIONES.md</strong></small></div>
+      </div>
     </div>
 
   </div>
@@ -182,20 +268,34 @@
 
 <script>
   // ─── CONFIGURACIÓN ───
-  const STAFF_PASSWORD  = 'NOM2026ANCESTAFF$';   // ← Cambia esta contraseña antes de publicar
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQQOKF6-9iSQHaPaJxuvDv59X7EjxyRefwDXye05_qWgFz0a20E8pnZnoodeSgIETm/exec';
-  const DIAS = ['26 mayo','27 mayo','28 mayo'];
+  const STAFF_PASSWORD  = 'NOM2026staff';  // ← cambia antes de publicar
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8JUnInYe4_XdHjNq0Xq5ZzwzAlhZh_arOiVZu9EVsg4WF6U6CvE-2Wr9gYyY6A3_d/exec';
 
-  let currentDay = 0;
+  // Catálogo completo de ponencias (id, tema, día, horaInicio, horaFin en minutos desde medianoche)
+  const PONENCIAS = [
+    { id:'p1', dia:'26 mayo', tema:'Protección para la seguridad; NMX-J-364-1 (serie)',                      horario:'12:00–13:15', ini:720,  fin:795  },
+    { id:'p2', dia:'26 mayo', tema:'Requisitos fundamentales de diseño y selección para conductores',         horario:'13:15–14:30', ini:795,  fin:870  },
+    { id:'p3', dia:'26 mayo', tema:'Perspectiva horizontal de una instalación eléctrica de utilización',      horario:'14:30–15:45', ini:870,  fin:945  },
+    { id:'p4', dia:'27 mayo', tema:'Instalaciones eléctricas de potencia — Requisitos eléctricos',            horario:'11:00–12:15', ini:660,  fin:735  },
+    { id:'p5', dia:'27 mayo', tema:'Instalaciones eléctricas de potencia — Requisitos mecánicos',             horario:'12:15–13:30', ini:735,  fin:810  },
+    { id:'p6', dia:'27 mayo', tema:'Controles de ingeniería para la gestión segura',                          horario:'13:30–14:45', ini:810,  fin:885  },
+    { id:'p7', dia:'28 mayo', tema:'Retos y desafíos en el proceso de modificación de la NOM-001-SEDE',       horario:'11:00–12:15', ini:660,  fin:735  },
+    { id:'p8', dia:'28 mayo', tema:'Ley de infraestructura de la calidad — Autoridades normalizadoras',       horario:'12:15–13:30', ini:735,  fin:810  },
+    { id:'p9', dia:'28 mayo', tema:'Evaluación de la conformidad de la NOM-001-SEDE',                         horario:'13:30–14:45', ini:810,  fin:885  },
+  ];
+
+  // Mapa de días del congreso (para detectar ponencia activa)
+  const DIA_MAP = { '2026-05-26':'26 mayo', '2026-05-27':'27 mayo', '2026-05-28':'28 mayo' };
+
   let allRegistros = [];
-  let foundUser = null;
+  let currentUser  = null;
 
   // ── AUTH ──
   function login() {
-    const pass = document.getElementById('passInput').value;
-    if (pass === STAFF_PASSWORD) {
+    if (document.getElementById('passInput').value === STAFF_PASSWORD) {
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('appScreen').style.display = 'block';
+      iniciarReloj();
       cargarDatos();
     } else {
       document.getElementById('loginErr').style.display = 'block';
@@ -206,16 +306,42 @@
     document.getElementById('loginScreen').style.display = 'flex';
     document.getElementById('appScreen').style.display = 'none';
     document.getElementById('passInput').value = '';
+    clearPerfil();
   }
 
-  // ── DÍAS ──
-  function setDay(n, el) {
-    currentDay = n;
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-    clearResult();
-    renderTabla();
-    updateStats();
+  // ── RELOJ ──
+  function iniciarReloj() {
+    function tick() {
+      const now = new Date();
+      document.getElementById('reloj').textContent = now.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+      actualizarBanner(now);
+    }
+    tick(); setInterval(tick, 1000);
+  }
+
+  // ── PONENCIA ACTIVA ──
+  function getPonenciaActiva(now) {
+    const fecha = now.toISOString().slice(0,10);
+    const diaLabel = DIA_MAP[fecha];
+    if (!diaLabel) return null;
+    const mins = now.getHours()*60 + now.getMinutes();
+    return PONENCIAS.find(p => p.dia === diaLabel && mins >= p.ini && mins < p.fin) || null;
+  }
+
+  function actualizarBanner(now) {
+    const activa = getPonenciaActiva(now);
+    const banner = document.getElementById('activeBanner');
+    if (activa) {
+      banner.className = 'active-banner on';
+      document.getElementById('activeTema').textContent = activa.tema;
+      document.getElementById('activeHora').textContent = activa.dia + ' · ' + activa.horario;
+    } else {
+      banner.className = 'active-banner off';
+      document.getElementById('activeTema').textContent = 'Sin ponencia activa en este momento';
+      document.getElementById('activeHora').textContent = '';
+    }
+    // Re-render perfil si hay uno abierto (para actualizar highlight)
+    if (currentUser) renderPerfil(currentUser);
   }
 
   // ── CARGAR DATOS ──
@@ -226,7 +352,6 @@
       allRegistros = data.registros || [];
     } catch(e) {
       allRegistros = [];
-      console.warn('No se pudo conectar con el servidor:', e);
     }
     renderTabla();
     updateStats();
@@ -234,129 +359,210 @@
 
   // ── STATS ──
   function updateStats() {
-    const dia = DIAS[currentDay];
     const total = allRegistros.length;
-    const asistieron = allRegistros.filter(r => r.asistencias?.[dia]).length;
-    document.getElementById('statTotal').textContent = total;
-    document.getElementById('statHoy').textContent = asistieron;
-    document.getElementById('statPend').textContent = total - asistieron;
-    document.getElementById('statHoyLbl').textContent = `Asistencias ${dia}`;
+    let totalCheckins = 0, enActiva = 0, conConstancia = 0;
+    const activa = getPonenciaActiva(new Date());
+    allRegistros.forEach(r => {
+      const asis = r.asistencias || {};
+      const cnt = Object.values(asis).filter(Boolean).length;
+      totalCheckins += cnt;
+      if (activa && asis[activa.id]) enActiva++;
+      if (cnt >= 9) conConstancia++;
+    });
+    document.getElementById('statTotal').textContent   = total;
+    document.getElementById('statAsist').textContent   = totalCheckins;
+    document.getElementById('statHoy').textContent     = enActiva;
+    document.getElementById('statConst').textContent   = conConstancia;
+    document.getElementById('statHoyLbl').textContent  = activa ? `En "${activa.tema.slice(0,22)}…"` : 'En ponencia activa';
   }
 
-  // ── BUSCAR ──
+  // ── BUSCAR ID ──
   function buscarID() {
     const val = document.getElementById('lookupInput').value.trim().toUpperCase();
-    const box = document.getElementById('resultBox');
-    document.getElementById('resBtn').style.display = 'none';
+    document.getElementById('notFoundBox').style.display = 'none';
+    document.getElementById('perfilBox').style.display   = 'none';
+    currentUser = null;
     if (!val) return;
 
     const reg = allRegistros.find(r => r.id.toUpperCase() === val);
-    const dia = DIAS[currentDay];
-    box.style.display = 'block';
-
     if (!reg) {
-      box.className = 'result-box notfound';
-      document.getElementById('resName').textContent = 'ID no encontrado';
-      document.getElementById('resMeta').textContent = `No existe ningún registro con el ID "${val}"`;
-      document.getElementById('resStatus').className = 'res-status err';
-      document.getElementById('resStatus').textContent = '✗ No registrado en el sistema';
-      foundUser = null; return;
-    }
-
-    foundUser = reg;
-    const yaAsistio = reg.asistencias?.[dia];
-    document.getElementById('resName').textContent = reg.nombre;
-    document.getElementById('resMeta').textContent = `${reg.empresa || '—'} · ${reg.cargo || '—'} · ${reg.pais || '—'}`;
-
-    if (yaAsistio) {
-      box.className = 'result-box already';
-      document.getElementById('resStatus').className = 'res-status warn';
-      document.getElementById('resStatus').textContent = `⚠ Ya se registró asistencia para ${dia} a las ${yaAsistio}`;
-    } else {
-      box.className = 'result-box found';
-      document.getElementById('resStatus').className = 'res-status ok';
-      document.getElementById('resStatus').textContent = `✓ Registrado en el sistema — sin asistencia marcada para ${dia}`;
-      document.getElementById('resBtn').style.display = 'inline-flex';
-    }
-  }
-
-  async function marcarAsistencia() {
-    if (!foundUser) return;
-    const dia = DIAS[currentDay];
-    const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
-    if (!foundUser.asistencias) foundUser.asistencias = {};
-    foundUser.asistencias[dia] = hora;
-    try {
-      await fetch(APPS_SCRIPT_URL, {
-        method:'POST', mode:'no-cors',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({action:'checkIn', id:foundUser.id, dia, hora})
-      });
-    } catch(e) { console.warn(e); }
-    document.getElementById('resBtn').style.display = 'none';
-    document.getElementById('resStatus').className = 'res-status ok';
-    document.getElementById('resStatus').textContent = `✓ Asistencia registrada para ${dia} a las ${hora}`;
-    document.getElementById('resultBox').className = 'result-box already';
-    document.getElementById('lookupInput').value = '';
-    foundUser = null;
-    renderTabla(); updateStats();
-  }
-
-  function clearResult() {
-    document.getElementById('resultBox').style.display = 'none';
-    document.getElementById('lookupInput').value = '';
-    foundUser = null;
-  }
-
-  // ── TABLA ──
-  function renderTabla(q = '') {
-    const dia = DIAS[currentDay];
-    const query = q.toLowerCase();
-    const filtrado = allRegistros.filter(r =>
-      !query || r.nombre?.toLowerCase().includes(query) ||
-      r.id?.toLowerCase().includes(query) || r.empresa?.toLowerCase().includes(query)
-    );
-    if (filtrado.length === 0) {
-      document.getElementById('tableWrap').innerHTML = '<div class="empty-msg">Sin resultados.</div>';
+      document.getElementById('notFoundBox').style.display = 'block';
+      document.getElementById('notFoundTxt').textContent = `No existe ningún registro con el ID "${val}"`;
       return;
     }
-    const rows = filtrado.map(r => {
-      const asistio = r.asistencias?.[dia];
-      return `<tr>
-        <td><strong>${r.id}</strong></td>
-        <td>${r.nombre}</td>
-        <td>${r.empresa||'—'}</td>
-        <td>${r.cargo||'—'}</td>
-        <td>${asistio?`<span class="chip asistio">✓ ${asistio}</span>`:`<span class="chip pendiente">Pendiente</span>`}</td>
-        <td><button class="btn-check" ${asistio?'disabled':''} onclick="checkInManual('${r.id}')">${asistio?'✓ Ya registrado':'Marcar'}</button></td>
-      </tr>`;
-    }).join('');
-    document.getElementById('tableWrap').innerHTML = `<table><thead><tr><th>ID</th><th>Nombre</th><th>Empresa</th><th>Cargo</th><th>Asistencia (${dia})</th><th>Acción</th></tr></thead><tbody>${rows}</tbody></table>`;
+    currentUser = reg;
+    renderPerfil(reg);
   }
 
-  async function checkInManual(id) {
-    const reg = allRegistros.find(r => r.id === id);
-    if (!reg) return;
-    const dia = DIAS[currentDay];
+  function renderPerfil(reg) {
+    const asis    = reg.asistencias || {};
+    const total9  = Object.values(asis).filter(Boolean).length;
+    const activa  = getPonenciaActiva(new Date());
+
+    document.getElementById('pNombre').textContent = reg.nombre;
+    document.getElementById('pId').textContent     = reg.id;
+    document.getElementById('pMeta').textContent   = `${reg.empresa||'—'} · ${reg.cargo||'—'} · ${reg.pais||'—'}`;
+
+    // Badge constancia
+    const badge = document.getElementById('constBadge');
+    if (total9 >= 9) {
+      badge.className = 'constancia-badge si';
+      badge.textContent = '🎓 ' + total9 + '/9 — Constancia';
+    } else {
+      badge.className = 'constancia-badge no';
+      badge.textContent = total9 + '/9 ponencias';
+    }
+
+    // Ponencias seleccionadas por el asistente (guardadas como texto pipe-separado)
+    const selTemas = (reg.ponencias || '').split('|').map(s => s.trim()).filter(Boolean);
+
+    // Agrupar por día
+    const dias = ['26 mayo','27 mayo','28 mayo'];
+    const dayTitles = {
+      '26 mayo':'Instalaciones Eléctricas en Baja Tensión',
+      '27 mayo':'Instalaciones Eléctricas en Alta Tensión',
+      '28 mayo':'Trabajos de Modificación de la NOM-001-SEDE-2012'
+    };
+
+    let html = '';
+    dias.forEach(dia => {
+      const ponsDia = PONENCIAS.filter(p => p.dia === dia);
+      let itemsHTML = '';
+      ponsDia.forEach(p => {
+        const seleccionada = selTemas.some(t => t.toLowerCase().includes(p.tema.toLowerCase().slice(0,30)));
+        const yaAsistio    = asis[p.id];
+        const esActiva     = activa && activa.id === p.id;
+
+        let estadoClass = 'pending';
+        let estadoIcon  = '—';
+        let itemClass   = '';
+        let btnHTML     = '';
+
+        if (!seleccionada) {
+          estadoClass = 'no-reg';
+          estadoIcon  = '·';
+          itemClass   = 'no-selec';
+          btnHTML     = `<button class="btn-marcar no-reg" disabled title="El asistente no seleccionó esta ponencia">No seleccionada</button>`;
+        } else if (yaAsistio) {
+          estadoClass = 'ok';
+          estadoIcon  = '✓';
+          itemClass   = 'asistio';
+          btnHTML     = `<button class="btn-marcar" disabled>✓ ${yaAsistio}</button>`;
+        } else if (esActiva) {
+          estadoClass = 'active-now';
+          estadoIcon  = '▶';
+          itemClass   = 'activa';
+          btnHTML     = `<button class="btn-marcar" onclick="marcarPonencia('${p.id}')">Marcar asistencia</button>`;
+        } else {
+          itemClass = '';
+          btnHTML   = `<button class="btn-marcar" onclick="marcarPonencia('${p.id}')">Marcar</button>`;
+        }
+
+        const horaLabel = esActiva
+          ? `<span class="live">🔴 EN CURSO · ${p.horario}</span>`
+          : p.horario;
+
+        itemsHTML += `
+          <div class="pcheck-item ${itemClass}" id="pitem-${p.id}">
+            <div class="pcheck-estado ${estadoClass}">${estadoIcon}</div>
+            <div class="pcheck-info">
+              <div class="pcheck-tema">${p.tema}</div>
+              <div class="pcheck-hora">${p.dia} · ${horaLabel}</div>
+            </div>
+            ${btnHTML}
+          </div>`;
+      });
+
+      html += `
+        <div class="pcheck-day">
+          <div class="pcheck-day-header">
+            <div class="pcheck-day-badge">${dia}</div>
+            <div class="pcheck-day-title">${dayTitles[dia]}</div>
+          </div>
+          ${itemsHTML}
+        </div>`;
+    });
+
+    document.getElementById('checklistBox').innerHTML = html;
+    document.getElementById('perfilBox').style.display = 'block';
+  }
+
+  // ── MARCAR PONENCIA ──
+  async function marcarPonencia(ponenciaId) {
+    if (!currentUser) return;
     const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
-    if (!reg.asistencias) reg.asistencias = {};
-    reg.asistencias[dia] = hora;
+    if (!currentUser.asistencias) currentUser.asistencias = {};
+    currentUser.asistencias[ponenciaId] = hora;
+
+    // Actualizar también en allRegistros
+    const idx = allRegistros.findIndex(r => r.id === currentUser.id);
+    if (idx >= 0) allRegistros[idx].asistencias = currentUser.asistencias;
+
     try {
       await fetch(APPS_SCRIPT_URL, {
         method:'POST', mode:'no-cors',
         headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({action:'checkIn', id, dia, hora})
+        body: JSON.stringify({action:'checkIn', id:currentUser.id, ponenciaId, hora})
       });
-    } catch(e) {}
+    } catch(e) { console.warn(e); }
+
+    renderPerfil(currentUser);
     renderTabla(document.getElementById('tableSearch').value);
     updateStats();
   }
 
-  // Auto-refresh cada 30 segundos
+  function clearPerfil() {
+    document.getElementById('perfilBox').style.display   = 'none';
+    document.getElementById('notFoundBox').style.display = 'none';
+    document.getElementById('lookupInput').value = '';
+    currentUser = null;
+  }
+
+  // ── TABLA ──
+  function renderTabla(q = '') {
+    const query = (q||'').toLowerCase();
+    const filtrado = allRegistros.filter(r =>
+      !query || (r.nombre||'').toLowerCase().includes(query) ||
+      (r.id||'').toLowerCase().includes(query) || (r.empresa||'').toLowerCase().includes(query)
+    );
+    if (filtrado.length === 0) {
+      document.getElementById('tableWrap').innerHTML =
+        '<div class="empty-msg">Sin resultados. Conecta tu Google Sheet para ver los datos.</div>';
+      return;
+    }
+    const rows = filtrado.map(r => {
+      const asis  = r.asistencias || {};
+      const cnt   = Object.values(asis).filter(Boolean).length;
+      const pct   = Math.round(cnt/9*100);
+      const chip  = cnt >= 9
+        ? `<span class="chip morado">🎓 Constancia</span>`
+        : `<span class="chip ${cnt>0?'verde':'gris'}">${cnt}/9</span>`;
+      return `<tr>
+        <td><strong style="font-family:'Montserrat',sans-serif">${r.id}</strong></td>
+        <td>${r.nombre}</td>
+        <td>${r.empresa||'—'}</td>
+        <td>${r.cargo||'—'}</td>
+        <td>${chip} <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div></td>
+        <td><button class="btn-marcar" onclick="quickLoad('${r.id}')">Ver / marcar</button></td>
+      </tr>`;
+    }).join('');
+    document.getElementById('tableWrap').innerHTML = `
+      <table>
+        <thead><tr><th>ID</th><th>Nombre</th><th>Empresa</th><th>Cargo</th><th>Asistencias</th><th>Acción</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  }
+
+  function quickLoad(id) {
+    document.getElementById('lookupInput').value = id;
+    buscarID();
+    document.getElementById('lookupInput').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  // Auto-refresh cada 30 s
   setInterval(() => {
     if (document.getElementById('appScreen').style.display !== 'none') cargarDatos();
   }, 30000);
 </script>
-
 </body>
 </html>
