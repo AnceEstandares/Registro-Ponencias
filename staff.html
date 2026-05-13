@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Staff — Control de Asistencia · NOM-001-SEDE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --white:#FFFFFF; --navy:#143682; --blue:#158CFF; --navy-dk:#0d2460;
+      --blue-lt:#e8f3ff; --gray:#f4f6fb; --text:#1a1a2e; --muted:#6b7a99;
+      --border:#dce3f0; --green:#16a34a; --green-lt:#dcfce7;
+      --red:#dc2626; --red-lt:#fee2e2; --yellow:#d97706; --yellow-lt:#fef3c7;
+      --radius:12px; --shadow:0 4px 24px rgba(20,54,130,.10);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Source Sans 3',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;}
+
+    /* LOGIN */
+    #loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy-dk) 0%,var(--navy) 60%,var(--blue) 100%);padding:24px;}
+    .login-card{background:var(--white);border-radius:16px;padding:48px 40px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;}
+    .lock-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 8px 20px rgba(20,54,130,.3);}
+    .login-card h2{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;color:var(--navy);margin-bottom:4px;}
+    .login-card p{font-size:13px;color:var(--muted);margin-bottom:24px;}
+    .login-err{color:var(--red);font-size:13px;margin-bottom:12px;display:none;}
+    .login-card input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:16px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;text-align:center;letter-spacing:.1em;margin-bottom:16px;}
+    .login-card input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,140,255,.15);}
+
+    /* HEADER */
+    #appScreen{display:none;}
+    header{background:linear-gradient(135deg,var(--navy-dk),var(--navy));color:var(--white);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 16px rgba(0,0,0,.15);}
+    .staff-badge{background:rgba(21,140,255,.35);border:1px solid rgba(21,140,255,.5);color:#a8d4ff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;}
+    header h1{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;}
+    header .sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px;}
+
+    /* CONTAINER */
+    .container{max-width:900px;margin:0 auto;padding:28px 20px 60px;}
+
+    /* STATS */
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
+    .stat-card{background:var(--white);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+    .stat-card .num{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:900;color:var(--navy);}
+    .stat-card .lbl{font-size:12px;color:var(--muted);margin-top:4px;}
+    .stat-card.green .num{color:var(--green);}
+    .stat-card.blue .num{color:var(--blue);}
+
+    /* TABS */
+    .day-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+    .tab{padding:10px 20px;border-radius:8px;border:1.5px solid var(--border);background:var(--white);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;}
+    .tab:hover{border-color:var(--blue);color:var(--navy);}
+    .tab.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+    /* LOOKUP */
+    .lookup-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:24px;}
+    .lookup-card h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+    .lookup-card .sub{font-size:13px;color:var(--muted);margin-bottom:18px;}
+    .lookup-row{display:flex;gap:12px;}
+    .lookup-row input{flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:16px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;text-transform:uppercase;letter-spacing:.06em;}
+    .lookup-row input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,140,255,.15);}
+    .result-box{margin-top:20px;border-radius:10px;padding:20px;display:none;border:1.5px solid var(--border);}
+    .result-box.found{border-color:var(--green);background:var(--green-lt);}
+    .result-box.notfound{border-color:var(--red);background:var(--red-lt);}
+    .result-box.already{border-color:var(--yellow);background:var(--yellow-lt);}
+    .res-name{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;color:var(--navy);margin-bottom:6px;}
+    .res-meta{font-size:13px;color:var(--muted);margin-bottom:12px;}
+    .res-status{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;margin-bottom:14px;}
+    .res-status.ok{color:var(--green);}
+    .res-status.warn{color:var(--yellow);}
+    .res-status.err{color:var(--red);}
+
+    /* TABLE */
+    .table-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+    .table-header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;}
+    .table-header h3{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800;color:var(--navy);}
+    .table-search{padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;outline:none;width:220px;}
+    .table-search:focus{border-color:var(--blue);}
+    table{width:100%;border-collapse:collapse;}
+    th{background:#f8faff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:12px 16px;text-align:left;}
+    td{padding:13px 16px;font-size:14px;border-top:1px solid var(--border);}
+    tr:hover td{background:#fafbff;}
+    .chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;}
+    .chip.asistio{background:var(--green-lt);color:var(--green);}
+    .chip.pendiente{background:#f1f5f9;color:var(--muted);}
+    .btn-check{padding:7px 16px;border-radius:6px;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;background:var(--navy);color:var(--white);transition:all .2s;}
+    .btn-check:hover{background:var(--blue);}
+    .btn-check:disabled{background:var(--green);cursor:default;}
+    .empty-msg{text-align:center;padding:40px;color:var(--muted);font-size:14px;line-height:1.6;}
+
+    /* BTNS */
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;letter-spacing:.04em;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;}
+    .btn-primary{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);box-shadow:0 4px 16px rgba(21,140,255,.3);}
+    .btn-primary:hover{transform:translateY(-1px);}
+    .btn-ghost{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:white;padding:8px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;}
+
+    @media(max-width:600px){
+      .stats{grid-template-columns:1fr 1fr;}
+      .lookup-row{flex-direction:column;}
+      .table-search{width:100%;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ LOGIN ═══ -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="lock-icon">
+      <svg width="28" height="28" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
+        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    </div>
+    <h2>Acceso Staff</h2>
+    <p>Ingresa la contraseña para acceder al panel de control de asistencia.</p>
+    <div class="login-err" id="loginErr">Contraseña incorrecta. Intenta de nuevo.</div>
+    <input type="password" id="passInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()"/>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="login()">Ingresar</button>
+  </div>
+</div>
+
+<!-- ═══ APP ═══ -->
+<div id="appScreen">
+  <header>
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+        <h1>Panel de Asistencia</h1>
+        <span class="staff-badge">Staff Only</span>
+      </div>
+      <div class="sub">18° Congreso Nacional de la NOM-001-SEDE · Mayo 2026</div>
+    </div>
+    <button class="btn-ghost" onclick="logout()">Cerrar sesión</button>
+  </header>
+
+  <div class="container">
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card"><div class="num" id="statTotal">0</div><div class="lbl">Registros totales</div></div>
+      <div class="stat-card green"><div class="num" id="statHoy">0</div><div class="lbl" id="statHoyLbl">Asistencias hoy</div></div>
+      <div class="stat-card blue"><div class="num" id="statPend">0</div><div class="lbl">Pendientes hoy</div></div>
+    </div>
+
+    <!-- Day tabs -->
+    <div class="day-tabs">
+      <div class="tab active" onclick="setDay(0,this)">26 Mayo · Baja Tensión</div>
+      <div class="tab" onclick="setDay(1,this)">27 Mayo · Alta Tensión</div>
+      <div class="tab" onclick="setDay(2,this)">28 Mayo · Modificación NOM</div>
+    </div>
+
+    <!-- Lookup -->
+    <div class="lookup-card">
+      <h3>Validar asistencia por ID</h3>
+      <div class="sub">Escribe el número de identificación del asistente y regístralo como presente.</div>
+      <div class="lookup-row">
+        <input type="text" id="lookupInput" placeholder="NOM-XXXXXXXX" onkeydown="if(event.key==='Enter')buscarID()"/>
+        <button class="btn btn-primary" onclick="buscarID()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Buscar
+        </button>
+      </div>
+      <div class="result-box" id="resultBox">
+        <div class="res-name" id="resName">—</div>
+        <div class="res-meta" id="resMeta">—</div>
+        <div class="res-status" id="resStatus">—</div>
+        <button class="btn btn-primary" id="resBtn" onclick="marcarAsistencia()" style="display:none;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+          Confirmar asistencia
+        </button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-card">
+      <div class="table-header">
+        <h3>Lista de Asistentes Registrados</h3>
+        <input class="table-search" id="tableSearch" type="text" placeholder="Buscar nombre, ID..." oninput="renderTabla(this.value)"/>
+      </div>
+      <div id="tableWrap"><div class="empty-msg">Conecta tu Google Sheet para ver los datos aquí.<br><small>Ver instrucciones en el archivo <strong>INSTRUCCIONES.md</strong></small></div></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ─── CONFIGURACIÓN ───
+  const STAFF_PASSWORD  = 'NOM2026staff';   // ← Cambia esta contraseña antes de publicar
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/TU_SCRIPT_ID_AQUI/exec';
+  const DIAS = ['26 mayo','27 mayo','28 mayo'];
+
+  let currentDay = 0;
+  let allRegistros = [];
+  let foundUser = null;
+
+  // ── AUTH ──
+  function login() {
+    const pass = document.getElementById('passInput').value;
+    if (pass === STAFF_PASSWORD) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('appScreen').style.display = 'block';
+      cargarDatos();
+    } else {
+      document.getElementById('loginErr').style.display = 'block';
+      document.getElementById('passInput').value = '';
+    }
+  }
+  function logout() {
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('appScreen').style.display = 'none';
+    document.getElementById('passInput').value = '';
+  }
+
+  // ── DÍAS ──
+  function setDay(n, el) {
+    currentDay = n;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    clearResult();
+    renderTabla();
+    updateStats();
+  }
+
+  // ── CARGAR DATOS ──
+  async function cargarDatos() {
+    try {
+      const r = await fetch(APPS_SCRIPT_URL + '?action=getAll', {cache:'no-store'});
+      const data = await r.json();
+      allRegistros = data.registros || [];
+    } catch(e) {
+      allRegistros = [];
+      console.warn('No se pudo conectar con el servidor:', e);
+    }
+    renderTabla();
+    updateStats();
+  }
+
+  // ── STATS ──
+  function updateStats() {
+    const dia = DIAS[currentDay];
+    const total = allRegistros.length;
+    const asistieron = allRegistros.filter(r => r.asistencias?.[dia]).length;
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statHoy').textContent = asistieron;
+    document.getElementById('statPend').textContent = total - asistieron;
+    document.getElementById('statHoyLbl').textContent = `Asistencias ${dia}`;
+  }
+
+  // ── BUSCAR ──
+  function buscarID() {
+    const val = document.getElementById('lookupInput').value.trim().toUpperCase();
+    const box = document.getElementById('resultBox');
+    document.getElementById('resBtn').style.display = 'none';
+    if (!val) return;
+
+    const reg = allRegistros.find(r => r.id.toUpperCase() === val);
+    const dia = DIAS[currentDay];
+    box.style.display = 'block';
+
+    if (!reg) {
+      box.className = 'result-box notfound';
+      document.getElementById('resName').textContent = 'ID no encontrado';
+      document.getElementById('resMeta').textContent = `No existe ningún registro con el ID "${val}"`;
+      document.getElementById('resStatus').className = 'res-status err';
+      document.getElementById('resStatus').textContent = '✗ No registrado en el sistema';
+      foundUser = null; return;
+    }
+
+    foundUser = reg;
+    const yaAsistio = reg.asistencias?.[dia];
+    document.getElementById('resName').textContent = reg.nombre;
+    document.getElementById('resMeta').textContent = `${reg.empresa || '—'} · ${reg.cargo || '—'} · ${reg.pais || '—'}`;
+
+    if (yaAsistio) {
+      box.className = 'result-box already';
+      document.getElementById('resStatus').className = 'res-status warn';
+      document.getElementById('resStatus').textContent = `⚠ Ya se registró asistencia para ${dia} a las ${yaAsistio}`;
+    } else {
+      box.className = 'result-box found';
+      document.getElementById('resStatus').className = 'res-status ok';
+      document.getElementById('resStatus').textContent = `✓ Registrado en el sistema — sin asistencia marcada para ${dia}`;
+      document.getElementById('resBtn').style.display = 'inline-flex';
+    }
+  }
+
+  async function marcarAsistencia() {
+    if (!foundUser) return;
+    const dia = DIAS[currentDay];
+    const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+    if (!foundUser.asistencias) foundUser.asistencias = {};
+    foundUser.asistencias[dia] = hora;
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method:'POST', mode:'no-cors',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({action:'checkIn', id:foundUser.id, dia, hora})
+      });
+    } catch(e) { console.warn(e); }
+    document.getElementById('resBtn').style.display = 'none';
+    document.getElementById('resStatus').className = 'res-status ok';
+    document.getElementById('resStatus').textContent = `✓ Asistencia registrada para ${dia} a las ${hora}`;
+    document.getElementById('resultBox').className = 'result-box already';
+    document.getElementById('lookupInput').value = '';
+    foundUser = null;
+    renderTabla(); updateStats();
+  }
+
+  function clearResult() {
+    document.getElementById('resultBox').style.display = 'none';
+    document.getElementById('lookupInput').value = '';
+    foundUser = null;
+  }
+
+  // ── TABLA ──
+  function renderTabla(q = '') {
+    const dia = DIAS[currentDay];
+    const query = q.toLowerCase();
+    const filtrado = allRegistros.filter(r =>
+      !query || r.nombre?.toLowerCase().includes(query) ||
+      r.id?.toLowerCase().includes(query) || r.empresa?.toLowerCase().includes(query)
+    );
+    if (filtrado.length === 0) {
+      document.getElementById('tableWrap').innerHTML = '<div class="empty-msg">Sin resultados.</div>';
+      return;
+    }
+    const rows = filtrado.map(r => {
+      const asistio = r.asistencias?.[dia];
+      return `<tr>
+        <td><strong>${r.id}</strong></td>
+        <td>${r.nombre}</td>
+        <td>${r.empresa||'—'}</td>
+        <td>${r.cargo||'—'}</td>
+        <td>${asistio?`<span class="chip asistio">✓ ${asistio}</span>`:`<span class="chip pendiente">Pendiente</span>`}</td>
+        <td><button class="btn-check" ${asistio?'disabled':''} onclick="checkInManual('${r.id}')">${asistio?'✓ Ya registrado':'Marcar'}</button></td>
+      </tr>`;
+    }).join('');
+    document.getElementById('tableWrap').innerHTML = `<table><thead><tr><th>ID</th><th>Nombre</th><th>Empresa</th><th>Cargo</th><th>Asistencia (${dia})</th><th>Acción</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+
+  async function checkInManual(id) {
+    const reg = allRegistros.find(r => r.id === id);
+    if (!reg) return;
+    const dia = DIAS[currentDay];
+    const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+    if (!reg.asistencias) reg.asistencias = {};
+    reg.asistencias[dia] = hora;
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method:'POST', mode:'no-cors',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({action:'checkIn', id, dia, hora})
+      });
+    } catch(e) {}
+    renderTabla(document.getElementById('tableSearch').value);
+    updateStats();
+  }
+
+  // Auto-refresh cada 30 segundos
+  setInterval(() => {
+    if (document.getElementById('appScreen').style.display !== 'none') cargarDatos();
+  }, 30000);
+</script>
+
+</body>
+</html>

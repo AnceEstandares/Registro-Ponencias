@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>18° Congreso Nacional NOM-001-SEDE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --white:   #FFFFFF;
+      --navy:    #143682;
+      --blue:    #158CFF;
+      --navy-dk: #0d2460;
+      --blue-lt: #e8f3ff;
+      --gray:    #f4f6fb;
+      --text:    #1a1a2e;
+      --muted:   #6b7a99;
+      --border:  #dce3f0;
+      --radius:  12px;
+      --shadow:  0 4px 24px rgba(20,54,130,.10);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Source Sans 3', sans-serif; background: var(--gray); color: var(--text); min-height: 100vh; }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, var(--navy-dk) 0%, var(--navy) 60%, var(--blue) 100%);
+      color: var(--white); position: relative; overflow: hidden;
+    }
+    header::before {
+      content: ''; position: absolute; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(21,140,255,.18) 0%, transparent 70%);
+      top: -150px; right: -100px; pointer-events: none;
+    }
+    .header-inner {
+      max-width: 1000px; margin: 0 auto; padding: 48px 24px 40px;
+      position: relative; z-index: 1; display: flex; align-items: center; gap: 40px;
+    }
+    .logo-box {
+      min-width: 130px; height: 90px;
+      border: 2px dashed rgba(255,255,255,.35); border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.5); font-size: 11px; font-family: 'Montserrat', sans-serif;
+      letter-spacing: .08em; text-transform: uppercase; text-align: center;
+      padding: 8px; flex-shrink: 0;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(21,140,255,.3); border: 1px solid rgba(21,140,255,.5);
+      color: #a8d4ff; font-family: 'Montserrat', sans-serif; font-size: 11px;
+      font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 40px; margin-bottom: 14px;
+    }
+    .header-text h1 {
+      font-family: 'Montserrat', sans-serif; font-size: clamp(22px, 4vw, 36px);
+      font-weight: 900; line-height: 1.15; margin-bottom: 10px;
+    }
+    .header-text h1 span { color: var(--blue); }
+    .header-text p { font-size: 15px; color: rgba(255,255,255,.75); max-width: 520px; line-height: 1.6; }
+    .dates-row { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+    .date-chip {
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px; padding: 8px 16px;
+      font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--white);
+    }
+    .date-chip small { display: block; font-weight: 400; font-size: 11px; color: rgba(255,255,255,.6); margin-top: 2px; }
+
+    /* STEPPER */
+    .stepper {
+      max-width: 1000px; margin: 0 auto; padding: 32px 24px 0;
+      display: flex; align-items: center;
+    }
+    .step { display: flex; align-items: center; gap: 10px; flex: 1; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--border);
+      color: var(--muted); font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all .3s;
+    }
+    .step-label { font-size: 13px; font-weight: 600; color: var(--muted); white-space: nowrap; transition: color .3s; }
+    .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 8px; transition: background .4s; }
+    .step.active .step-num { background: var(--blue); color: var(--white); }
+    .step.active .step-label { color: var(--navy); }
+    .step.done .step-num { background: var(--navy); color: var(--white); }
+    .step.done .step-label { color: var(--navy); }
+    .step-line.done { background: var(--navy); }
+
+    /* CARD */
+    .main { max-width: 1000px; margin: 24px auto 60px; padding: 0 24px; }
+    .card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 40px; }
+    .screen { display: none; animation: fadeUp .35s ease; }
+    .screen.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* FORM */
+    .card h2 { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .card .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; }
+    .form-grid .full { grid-column: 1 / -1; }
+    .field label {
+      display: block; font-size: 12px; font-weight: 700; font-family: 'Montserrat', sans-serif;
+      letter-spacing: .06em; text-transform: uppercase; color: var(--navy); margin-bottom: 6px;
+    }
+    .field label span { color: var(--blue); }
+    .field input, .field select {
+      width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: 'Source Sans 3', sans-serif; font-size: 15px; color: var(--text);
+      background: var(--white); transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    .field input:focus, .field select:focus {
+      border-color: var(--blue); box-shadow: 0 0 0 3px rgba(21,140,255,.15);
+    }
+    .field input::placeholder { color: #bcc5d8; }
+
+    /* PONENCIAS */
+    .day-section { margin-bottom: 32px; }
+    .day-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .day-badge {
+      background: var(--navy); color: var(--white); font-family: 'Montserrat', sans-serif;
+      font-size: 12px; font-weight: 800; padding: 6px 14px; border-radius: 6px; white-space: nowrap;
+    }
+    .day-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); }
+    .ponencia-card {
+      border: 1.5px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
+      cursor: pointer; transition: border-color .2s, background .2s, box-shadow .2s;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .ponencia-card:hover { border-color: var(--blue); background: var(--blue-lt); }
+    .ponencia-card.selected { border-color: var(--navy); background: #eef2fb; box-shadow: 0 2px 12px rgba(20,54,130,.08); }
+    .ponencia-check {
+      width: 22px; height: 22px; border: 2px solid var(--border); border-radius: 6px;
+      flex-shrink: 0; margin-top: 2px; transition: all .2s;
+      display: flex; align-items: center; justify-content: center; background: var(--white);
+    }
+    .ponencia-card.selected .ponencia-check { background: var(--navy); border-color: var(--navy); }
+    .ponencia-check svg { display: none; }
+    .ponencia-card.selected .ponencia-check svg { display: block; }
+    .ponencia-info { flex: 1; }
+    .ponencia-tema { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; line-height: 1.4; }
+    .ponencia-eslogan { font-size: 13px; color: var(--muted); line-height: 1.4; margin-bottom: 6px; }
+    .ponencia-horario {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--blue);
+      background: rgba(21,140,255,.1); padding: 3px 10px; border-radius: 20px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 800;
+      letter-spacing: .04em; padding: 13px 28px; border-radius: 8px; border: none; cursor: pointer; transition: all .2s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: var(--white); box-shadow: 0 4px 16px rgba(21,140,255,.3);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(21,140,255,.4); }
+    .btn-primary:disabled { opacity: .7; cursor: not-allowed; transform: none; }
+    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--border); }
+    .btn-outline:hover { border-color: var(--navy); background: #f0f3fa; }
+    .btn-row { display: flex; justify-content: flex-end; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+
+    /* CONFIRMACION */
+    .confirm-hero { text-align: center; padding: 16px 0 32px; }
+    .confirm-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; box-shadow: 0 8px 24px rgba(20,54,130,.2);
+    }
+    .confirm-hero h2 { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+    .confirm-hero p { color: var(--muted); font-size: 15px; max-width: 480px; margin: 0 auto; }
+    .id-box {
+      background: linear-gradient(135deg, var(--navy-dk), var(--navy));
+      border-radius: 14px; padding: 28px; text-align: center; margin: 28px 0;
+      box-shadow: 0 8px 32px rgba(20,54,130,.25);
+    }
+    .id-box .lbl { color: rgba(255,255,255,.6); font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 10px; }
+    .id-box .id-number { font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 900; color: var(--white); letter-spacing: .08em; }
+    .id-box .id-sub { color: rgba(255,255,255,.5); font-size: 12px; margin-top: 8px; }
+    .aviso {
+      background: var(--blue-lt); border-left: 4px solid var(--blue);
+      border-radius: 0 10px 10px 0; padding: 18px 20px;
+      font-size: 14px; color: var(--navy); line-height: 1.6; margin-bottom: 28px;
+    }
+    .aviso strong { font-weight: 700; }
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; margin-bottom: 24px; }
+    .summary-item label { display: block; font-size: 11px; font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .summary-item span { font-size: 14px; font-weight: 600; color: var(--navy); }
+    .ponencias-summary h4 { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: .06em; }
+    .ps-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text); }
+    .ps-day { background: var(--navy); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+
+    .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.4); border-top-color: white; border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error-msg { background: #fff0f0; border: 1px solid #ffcccc; color: #c0392b; border-radius: 8px; padding: 12px 16px; font-size: 13px; margin-top: 16px; display: none; }
+
+    @media (max-width: 640px) {
+      .header-inner { flex-direction: column; gap: 20px; padding: 32px 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid .full { grid-column: 1; }
+      .card { padding: 24px 20px; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .step-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-box">Logo<br>aquí</div>
+    <div class="header-text">
+      <div class="badge">18° Edición · 2026</div>
+      <h1>Congreso Nacional de la<br><span>NOM-001-SEDE</span></h1>
+      <p>Registro oficial de asistentes. Selecciona tus ponencias y obtén tu número de identificación.</p>
+      <div class="dates-row">
+        <div class="date-chip">26 Mayo <small>Baja Tensión</small></div>
+        <div class="date-chip">27 Mayo <small>Alta Tensión</small></div>
+        <div class="date-chip">28 Mayo <small>Modificación NOM</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="stepper">
+  <div class="step active" id="st0"><div class="step-num">1</div><span class="step-label">Registro</span></div>
+  <div class="step-line" id="sl01"></div>
+  <div class="step" id="st1"><div class="step-num">2</div><span class="step-label">Ponencias</span></div>
+  <div class="step-line" id="sl12"></div>
+  <div class="step" id="st2"><div class="step-num">3</div><span class="step-label">Confirmación</span></div>
+</div>
+
+<div class="main">
+  <div class="card">
+
+    <!-- PANTALLA 0 -->
+    <div class="screen active" id="screen0">
+      <h2>Datos del Asistente</h2>
+      <p class="subtitle">Completa la información para tu registro. Los campos con <span style="color:var(--blue)">*</span> son obligatorios.</p>
+      <div class="form-grid">
+        <div class="field full"><label>Nombre completo <span>*</span></label><input type="text" id="nombre" placeholder="Ej. María García López"/></div>
+        <div class="field"><label>Correo electrónico <span>*</span></label><input type="email" id="correo" placeholder="correo@empresa.com"/></div>
+        <div class="field"><label>Celular <span>*</span></label><input type="tel" id="celular" placeholder="10 dígitos"/></div>
+        <div class="field"><label>Empresa / Institución <span>*</span></label><input type="text" id="empresa" placeholder="Nombre de tu organización"/></div>
+        <div class="field"><label>Cargo <span>*</span></label><input type="text" id="cargo" placeholder="Ej. Ingeniero Eléctrico"/></div>
+        <div class="field"><label>País <span>*</span></label>
+          <select id="pais">
+            <option value="">Selecciona...</option>
+            <option>México</option><option>Estados Unidos</option><option>Colombia</option>
+            <option>Argentina</option><option>Chile</option><option>Otro</option>
+          </select>
+        </div>
+        <div class="field"><label>Estado / Localidad <span>*</span></label><input type="text" id="estado" placeholder="Ej. Ciudad de México"/></div>
+        <div class="field full"><label>Giro o Actividad de la empresa <span>*</span></label>
+          <select id="giro">
+            <option value="">Selecciona...</option>
+            <option>Instalaciones Eléctricas</option><option>Consultoría de Ingeniería</option>
+            <option>Gobierno / Institución pública</option><option>Educación / Investigación</option>
+            <option>Industria / Manufactura</option><option>Energía / Utilities</option>
+            <option>Construcción</option><option>Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="error-msg" id="err0">Por favor completa todos los campos obligatorios.</div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goTo1()">Continuar <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- PANTALLA 1 -->
+    <div class="screen" id="screen1">
+      <h2>Selección de Ponencias</h2>
+      <p class="subtitle">Elige las ponencias a las que planeas asistir. Asistir a las 9 te hace acreedor a una constancia de participación.</p>
+
+      <div class="day-section">
+        <div class="day-header"><div class="day-badge">26 / Mayo / 2026</div><div class="day-title">Instalaciones Eléctricas en Baja Tensión</div></div>
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="26 mayo" data-tema="Protección para la seguridad; NMX-J-364-1 — Norma universal para la protección para la seguridad">
+          <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="ponencia-info">
+            <div class="ponencia-tema">Protección para la seguridad; NMX-J-364-1 (serie) — Norma universal para la protección para la seguridad.</div>
+            <div class="ponencia-eslogan">Protección para la seguridad de las personas y los equipos.</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12:00 – 13:15</div>
+          </div>
+        </div>
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="26 mayo" data-tema="Requisitos fundamentales de diseño y selección para conductores y métodos de alambrado">
+          <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="ponencia-info">
+            <div class="ponencia-tema">Requisitos fundamentales de diseño y selección para conductores y métodos de alambrado.</div>
+            <div class="ponencia-eslogan">Funcionamiento satisfactorio del sistema de conducción (conductores, aislamiento y accesorios).</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>13:15 – 14:30</div>
+          </div>
+        </div>
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="26 mayo" data-tema="Perspectiva horizontal de una instalación eléctrica de utilización — Diseño, construcción y comprobación">
+          <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="ponencia-info">
+            <div class="ponencia-tema">Perspectiva horizontal de una instalación eléctrica de utilización — Diseño, construcción y comprobación.</div>
+            <div class="ponencia-eslogan">Diseño, construcción y verificación de las instalaciones eléctricas.</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>14:30 – 15:45</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-section">
+        <div class="day-header"><div class="day-badge">27 / Mayo / 2026</div><div class="day-title">Instalaciones Eléctricas en Alta Tensión</div></div>
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="27 mayo" data-tema="Instalaciones eléctricas de potencia — Requisitos eléctricos fundamentales">
+          <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="ponencia-info">
+            <div class="ponencia-tema">Instalaciones eléctricas de potencia — Requisitos eléctricos fundamentales.</div>
+            <div class="ponencia-eslogan">Requisitos para el funcionamiento satisfactorio en condiciones de operación: normal, transitoria y de falla.</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>11:00 – 12:15</div>
+          </div>
+        </div>
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="27 mayo" data-tema="Instalaciones eléctricas de potencia — Requisitos mecánicos fundamentales">
+          <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="ponencia-info">
+            <div class="ponencia-tema">Instalaciones eléctricas de potencia — Requisitos mecánicos fundamentales.</div>
+            <div class="ponencia-eslogan">Requisitos para el funcionamiento satisfactorio de estructuras mecánicas y conductores de líneas aéreas.</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12:15 – 13:30</div>
+          </div>
+        </div>
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="27 mayo" data-tema="Controles de ingeniería para la gestión segura, operación y actividad de trabajo en instalaciones eléctricas">
+          <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="ponencia-info">
+            <div class="ponencia-tema">Controles de ingeniería para la gestión segura, operación y actividad de trabajo en instalaciones eléctricas.</div>
+            <div class="ponencia-eslogan">Funcionamiento satisfactorio a través de la comunicación eficiente en las redes.</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>13:30 – 14:45</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-section">
+        <div class="day-header"><div class="day-badge">28 / Mayo / 2026</div><div class="day-title">Trabajos de Modificación de la NOM-001-SEDE-2012</div></div>
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="28 mayo" data-tema="Retos y desafíos en el proceso de modificación de la NOM-001-SEDE-2012">
+          <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="ponencia-info">
+            <div class="ponencia-tema">Retos y desafíos en el proceso de modificación de la NOM-001-SEDE-2012.</div>
+            <div class="ponencia-eslogan">Acciones para la NOM-001-SEDE que regule de manera efectiva las instalaciones eléctricas de los usuarios.</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>11:00 – 12:15</div>
+          </div>
+        </div>
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="28 mayo" data-tema="Ley de infraestructura de la calidad — Autoridades normalizadoras y proceso de modificación de NOM-001-SEDE">
+          <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="ponencia-info">
+            <div class="ponencia-tema">Ley de infraestructura de la calidad — Autoridades normalizadoras y proceso de modificación de NOM-001-SEDE.</div>
+            <div class="ponencia-eslogan">Trazabilidad legal en la NOM-001-SEDE con base en el sistema de la infraestructura de la calidad.</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12:15 – 13:30</div>
+          </div>
+        </div>
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="28 mayo" data-tema="Evaluación de la conformidad de la NOM-001-SEDE conforme a la Ley de Infraestructura de la Calidad">
+          <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="ponencia-info">
+            <div class="ponencia-tema">Evaluación de la conformidad de la NOM-001-SEDE conforme a la Ley de Infraestructura de la Calidad.</div>
+            <div class="ponencia-eslogan">Cambios / Innovación del PEC de la NOM-001-SEDE.</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>13:30 – 14:45</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="error-msg" id="err1">Selecciona al menos una ponencia para continuar.</div>
+      <div class="btn-row">
+        <button class="btn btn-outline" onclick="goTo(0)">← Regresar</button>
+        <button class="btn btn-primary" id="btnReg" onclick="enviarRegistro()">Completar registro <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- PANTALLA 2 -->
+    <div class="screen" id="screen2">
+      <div class="confirm-hero">
+        <div class="confirm-icon"><svg width="32" height="32" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h2>¡Registro exitoso!</h2>
+        <p>Tu registro ha sido confirmado. Guarda tu número de identificación para presentarlo en cada ponencia.</p>
+      </div>
+      <div class="id-box">
+        <div class="lbl">Número de Identificación</div>
+        <div class="id-number" id="displayID">—</div>
+        <div class="id-sub">Preséntalo en recepción al llegar a cada ponencia</div>
+      </div>
+      <div class="aviso">
+        <strong>📋 Importante:</strong> Las personas que asistan a las 9 ponencias durante los 3 días recibirán una <strong>constancia de participación</strong>. Por ello, es necesario validar la asistencia diaria a cada ponencia. Para lograrlo, las y los asistentes deberán tener en mano su número de identificación previamente asignado.
+      </div>
+      <div class="summary-grid" id="summaryData"></div>
+      <div class="ponencias-summary">
+        <h4>Ponencias seleccionadas</h4>
+        <div id="summaryPonencias"></div>
+      </div>
+      <div class="btn-row" style="justify-content:center;">
+        <button class="btn btn-primary" onclick="window.print()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>Imprimir comprobante</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ─── CONFIGURA AQUÍ TU APPS SCRIPT URL ───
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/TU_SCRIPT_ID_AQUI/exec';
+
+  function toggleP(el) { el.classList.toggle('selected'); }
+
+  function goTo(n) {
+    document.querySelectorAll('.screen').forEach((s,i) => s.classList.toggle('active', i===n));
+    ['st0','st1','st2'].forEach((id,i) => {
+      const el = document.getElementById(id);
+      el.className = 'step' + (i===n?' active':i<n?' done':'');
+    });
+    document.getElementById('sl01').className = 'step-line'+(n>0?' done':'');
+    document.getElementById('sl12').className = 'step-line'+(n>1?' done':'');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function goTo1() {
+    const ids = ['nombre','correo','celular','empresa','cargo','pais','estado','giro'];
+    const err = document.getElementById('err0');
+    if (ids.some(id => !document.getElementById(id).value.trim())) { err.style.display='block'; return; }
+    err.style.display='none'; goTo(1);
+  }
+
+  function generateID() {
+    const ts = Date.now().toString(36).toUpperCase().slice(-4);
+    const rnd = Math.random().toString(36).substr(2,4).toUpperCase();
+    return 'NOM-' + ts + rnd;
+  }
+
+  async function enviarRegistro() {
+    const sel = document.querySelectorAll('.ponencia-card.selected');
+    const err = document.getElementById('err1');
+    if (sel.length === 0) { err.style.display='block'; return; }
+    err.style.display='none';
+    const btn = document.getElementById('btnReg');
+    btn.innerHTML = '<span class="spinner"></span> Guardando...';
+    btn.disabled = true;
+
+    const id = generateID();
+    const ponenciasArr = Array.from(sel).map(el => ({dia:el.dataset.dia, tema:el.dataset.tema}));
+
+    const payload = {
+      id,
+      nombre:  document.getElementById('nombre').value.trim(),
+      correo:  document.getElementById('correo').value.trim(),
+      celular: document.getElementById('celular').value.trim(),
+      empresa: document.getElementById('empresa').value.trim(),
+      cargo:   document.getElementById('cargo').value.trim(),
+      pais:    document.getElementById('pais').value,
+      estado:  document.getElementById('estado').value.trim(),
+      giro:    document.getElementById('giro').value,
+      ponencias: ponenciasArr.map(p=>p.tema).join(' | '),
+      fecha_registro: new Date().toLocaleString('es-MX')
+    };
+
+    try {
+      await fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    } catch(e) { console.warn('fetch err:', e); }
+
+    // Mostrar confirmación
+    document.getElementById('displayID').textContent = id;
+    document.getElementById('summaryData').innerHTML = [
+      ['Nombre',payload.nombre],['Correo',payload.correo],['Celular',payload.celular],
+      ['Empresa',payload.empresa],['Cargo',payload.cargo],['País',payload.pais],
+      ['Estado',payload.estado],['Giro',payload.giro]
+    ].map(([l,v])=>`<div class="summary-item"><label>${l}</label><span>${v}</span></div>`).join('');
+    document.getElementById('summaryPonencias').innerHTML = ponenciasArr.map(p=>
+      `<div class="ps-item"><span class="ps-day">${p.dia}</span>${p.tema}</div>`).join('');
+    goTo(2);
+  }
+</script>
+</body>
+</html>
