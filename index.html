@@ -44,6 +44,10 @@
       letter-spacing: .08em; text-transform: uppercase; text-align: center;
       padding: 8px; flex-shrink: 0;
     }
+    .logo-img {
+      max-width: 160px; max-height: 100px; object-fit: contain;
+      border-radius: var(--radius); flex-shrink: 0;
+    }
     .badge {
       display: inline-block;
       background: rgba(21,140,255,.3); border: 1px solid rgba(21,140,255,.5);
@@ -208,7 +212,7 @@
 
 <header>
   <div class="header-inner">
-    <div class="logo-box">Logo<br>aquí</div>
+    <img src="Imagenes/logo.png" alt="Logo NOM-001-SEDE" class="logo-img" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/><div class="logo-box" id="logoFallback" style="display:none;">Logo<br>aquí</div>
     <div class="header-text">
       <div class="badge">18° Edición · 2026</div>
       <h1>Congreso Nacional de la<br><span>NOM-001-SEDE</span></h1>
@@ -393,7 +397,7 @@
 
 <script>
   // ─── CONFIGURA AQUÍ TU APPS SCRIPT URL ───
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8JUnInYe4_XdHjNq0Xq5ZzwzAlhZh_arOiVZu9EVsg4WF6U6CvE-2Wr9gYyY6A3_d/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz-1mHWrq9SWcKfCZC-fJNf9mRcdONN3PrUKCtGnAw_rHebU3hmtNo249cPrAI5Jo7x/exec';
 
   function toggleP(el) { el.classList.toggle('selected'); }
 

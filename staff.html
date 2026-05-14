@@ -20,8 +20,9 @@
     /* ── LOGIN ── */
     #loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;
       background:linear-gradient(135deg,var(--navy-dk) 0%,var(--navy) 60%,var(--blue) 100%);padding:24px;}
-    .login-card{background:var(--white);border-radius:16px;padding:48px 40px;width:100%;max-width:400px;
+    .login-card{background:var(--white);border-radius:16px;padding:48px 40px;width:100%;max-width:420px;
       box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;}
+    .login-logo{max-width:140px;max-height:80px;object-fit:contain;margin:0 auto 18px;display:block;}
     .lock-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--navy),var(--blue));
       border-radius:50%;display:flex;align-items:center;justify-content:center;
       margin:0 auto 20px;box-shadow:0 8px 20px rgba(20,54,130,.3);}
@@ -36,130 +37,142 @@
     /* ── APP ── */
     #appScreen{display:none;}
     header{background:linear-gradient(135deg,var(--navy-dk),var(--navy));color:var(--white);
-      padding:18px 28px;display:flex;align-items:center;justify-content:space-between;
+      padding:14px 28px;display:flex;align-items:center;justify-content:space-between;
       box-shadow:0 2px 16px rgba(0,0,0,.15);}
+    .header-left{display:flex;align-items:center;gap:16px;}
+    .header-logo{max-width:90px;max-height:54px;object-fit:contain;}
     .staff-badge{background:rgba(21,140,255,.35);border:1px solid rgba(21,140,255,.5);color:#a8d4ff;
       font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:.12em;
       text-transform:uppercase;padding:3px 10px;border-radius:20px;}
-    header h1{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;}
-    header .sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px;}
+    header h1{font-family:'Montserrat',sans-serif;font-size:17px;font-weight:900;}
+    header .hsub{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px;}
     .btn-ghost{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:white;
       padding:8px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;}
 
-    .container{max-width:960px;margin:0 auto;padding:28px 20px 60px;}
+    /* ── DÍA BANNER ── */
+    .day-banner{max-width:980px;margin:20px auto 0;padding:0 20px;}
+    .day-inner{border-radius:var(--radius);padding:14px 20px;display:flex;align-items:center;gap:14px;
+      font-size:14px;font-weight:600;background:var(--blue-lt);border:1.5px solid var(--blue);}
+    .day-inner .day-dot{width:10px;height:10px;border-radius:50%;background:var(--blue);flex-shrink:0;
+      animation:pulse 1.5s infinite;}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(21,140,255,.5);}50%{box-shadow:0 0 0 6px rgba(21,140,255,0);}}
+    .day-inner strong{font-family:'Montserrat',sans-serif;font-size:14px;color:var(--navy);}
+    .day-inner span{font-size:12px;color:var(--muted);}
+
+    .container{max-width:980px;margin:0 auto;padding:20px 20px 60px;}
 
     /* ── STATS ── */
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
     .stat-card{background:var(--white);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);}
     .stat-card .num{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:var(--navy);}
     .stat-card .lbl{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.3;}
     .stat-card.green .num{color:var(--green);}
-    .stat-card.blue .num{color:var(--blue);}
+    .stat-card.red .num{color:var(--red);}
     .stat-card.purple .num{color:var(--purple);}
 
-    /* ── PONENCIA ACTIVA BANNER ── */
-    .active-banner{border-radius:var(--radius);padding:14px 20px;margin-bottom:20px;
-      display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;}
-    .active-banner.on{background:var(--green-lt);border:1.5px solid var(--green);color:var(--green);}
-    .active-banner.off{background:#f1f5f9;border:1.5px solid var(--border);color:var(--muted);}
-    .active-banner .dot{width:10px;height:10px;border-radius:50%;background:currentColor;flex-shrink:0;}
-    .active-banner strong{font-family:'Montserrat',sans-serif;font-size:13px;}
+    /* ── SECTION TABS ── */
+    .section-tabs{display:flex;gap:0;margin-bottom:24px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+    .stab{flex:1;padding:14px 10px;text-align:center;cursor:pointer;font-family:'Montserrat',sans-serif;
+      font-size:13px;font-weight:800;letter-spacing:.04em;transition:all .2s;background:var(--white);
+      color:var(--muted);border:none;border-right:1px solid var(--border);}
+    .stab:last-child{border-right:none;}
+    .stab:hover{background:#f0f4ff;color:var(--navy);}
+    .stab.active-entry{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);}
+    .stab.active-exit{background:linear-gradient(135deg,#b91c1c,var(--red));color:var(--white);}
+    .stab.active-list{background:linear-gradient(135deg,var(--purple),#9333ea);color:var(--white);}
+    .stab .stab-icon{font-size:20px;display:block;margin-bottom:4px;}
+    .section-panel{display:none;}
+    .section-panel.visible{display:block;}
 
-    /* ── LOOKUP ── */
+    /* ── LOOKUP CARD ── */
     .lookup-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:24px;}
+    .lookup-card.entry-mode{border-top:4px solid var(--green);}
+    .lookup-card.exit-mode{border-top:4px solid var(--red);}
     .lookup-card h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
-    .lookup-card .sub{font-size:13px;color:var(--muted);margin-bottom:18px;}
+    .lookup-card .sub{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
     .lookup-row{display:flex;gap:12px;}
-    .lookup-row input{flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;
-      font-family:'Source Sans 3',sans-serif;font-size:16px;color:var(--text);outline:none;
-      transition:border-color .2s,box-shadow .2s;text-transform:uppercase;letter-spacing:.06em;}
-    .lookup-row input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,140,255,.15);}
+    .lookup-row input{flex:1;padding:14px 18px;border:2px solid var(--border);border-radius:10px;
+      font-family:'Montserrat',sans-serif;font-size:20px;font-weight:700;color:var(--text);outline:none;
+      transition:border-color .2s,box-shadow .2s;text-transform:uppercase;letter-spacing:.1em;text-align:center;}
+    .lookup-row input.entry-inp:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.15);}
+    .lookup-row input.exit-inp:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,.15);}
 
-    /* ── PERFIL ASISTENTE ── */
-    .perfil{display:none;margin-top:22px;}
-    .perfil-header{display:flex;align-items:flex-start;justify-content:space-between;
-      padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:20px;gap:16px;flex-wrap:wrap;}
-    .perfil-name{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;color:var(--navy);}
-    .perfil-meta{font-size:13px;color:var(--muted);margin-top:4px;}
-    .perfil-id{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;color:var(--blue);
-      background:var(--blue-lt);padding:4px 12px;border-radius:20px;}
-    .constancia-badge{display:inline-flex;align-items:center;gap:6px;
-      font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;
-      padding:6px 14px;border-radius:8px;}
-    .constancia-badge.si{background:var(--green-lt);color:var(--green);}
-    .constancia-badge.no{background:#f1f5f9;color:var(--muted);}
+    /* ── RESULT BOX ── */
+    .result-box{margin-top:24px;border-radius:14px;padding:24px 28px;display:none;border:1.5px solid var(--border);animation:fadeUp .3s ease;}
+    .result-box.ok-entry{border-color:var(--green);background:var(--green-lt);}
+    .result-box.ok-exit{border-color:var(--red);background:var(--red-lt);}
+    .result-box.already{border-color:var(--yellow);background:var(--yellow-lt);}
+    .result-box.notfound{border-color:var(--red);background:var(--red-lt);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
-    /* ── PONENCIAS DEL ASISTENTE ── */
-    .ponencias-checklist{}
-    .pcheck-day{margin-bottom:22px;}
-    .pcheck-day-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-    .pcheck-day-badge{background:var(--navy);color:var(--white);font-family:'Montserrat',sans-serif;
-      font-size:11px;font-weight:800;padding:4px 12px;border-radius:6px;}
-    .pcheck-day-title{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);}
+    .res-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;}
+    .res-avatar{width:48px;height:48px;border-radius:12px;background:var(--navy);display:flex;
+      align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;
+      font-size:18px;font-weight:900;color:white;flex-shrink:0;}
+    .res-name{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;color:var(--navy);margin-bottom:3px;}
+    .res-meta{font-size:13px;color:var(--muted);}
+    .res-id{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;color:var(--blue);
+      background:var(--blue-lt);padding:2px 10px;border-radius:20px;display:inline-block;margin-top:4px;}
 
-    .pcheck-item{display:flex;align-items:center;gap:14px;padding:13px 16px;
-      border:1.5px solid var(--border);border-radius:10px;margin-bottom:8px;
-      transition:border-color .2s,background .2s;}
-    .pcheck-item.asistio{border-color:var(--green);background:var(--green-lt);}
-    .pcheck-item.no-selec{border-color:var(--border);background:#f8faff;opacity:.55;}
-    .pcheck-item.activa{border-color:var(--blue);background:var(--blue-lt);}
+    .res-status{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;
+      padding:10px 16px;border-radius:8px;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+    .res-status.ok{background:rgba(22,163,74,.15);color:var(--green);}
+    .res-status.warn{background:rgba(217,119,6,.15);color:var(--yellow);}
+    .res-status.err{background:rgba(220,38,38,.15);color:var(--red);}
 
-    .pcheck-estado{width:30px;height:30px;border-radius:8px;flex-shrink:0;
-      display:flex;align-items:center;justify-content:center;font-size:14px;}
-    .pcheck-estado.ok{background:var(--green);color:white;}
-    .pcheck-estado.pending{background:var(--border);color:var(--muted);}
-    .pcheck-estado.active-now{background:var(--blue);color:white;animation:pulse 1.5s infinite;}
-    .pcheck-estado.no-reg{background:#e2e8f0;color:#94a3b8;}
-    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(21,140,255,.4);}50%{box-shadow:0 0 0 6px rgba(21,140,255,0);}}
+    /* Ponencias del día en el resultado */
+    .res-ponencias{margin-top:4px;}
+    .res-ponencias-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
+      text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;}
+    .res-pon-item{display:flex;align-items:center;gap:10px;padding:10px 14px;
+      border-radius:8px;background:rgba(20,54,130,.05);margin-bottom:8px;font-size:13px;}
+    .res-pon-check{width:22px;height:22px;border-radius:6px;background:var(--green);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .res-pon-hora{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
+      color:var(--blue);background:var(--blue-lt);padding:2px 8px;border-radius:12px;margin-left:auto;white-space:nowrap;}
 
-    .pcheck-info{flex:1;}
-    .pcheck-tema{font-size:13px;font-weight:700;color:var(--navy);line-height:1.4;}
-    .pcheck-hora{font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--muted);margin-top:3px;}
-    .pcheck-hora .live{color:var(--blue);}
-
-    .btn-marcar{padding:8px 16px;border-radius:7px;border:none;cursor:pointer;
-      font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;
-      background:var(--navy);color:var(--white);transition:all .2s;white-space:nowrap;flex-shrink:0;}
-    .btn-marcar:hover{background:var(--blue);}
-    .btn-marcar:disabled{background:var(--green);cursor:default;}
-    .btn-marcar.no-reg{background:#e2e8f0;color:#94a3b8;cursor:not-allowed;}
-
-    .not-found-box{background:var(--red-lt);border:1.5px solid var(--red);border-radius:10px;
-      padding:18px 20px;display:none;margin-top:18px;}
-    .not-found-box p{color:var(--red);font-weight:700;font-family:'Montserrat',sans-serif;font-size:14px;}
-
-    /* ── TABLA GLOBAL ── */
+    /* ── TABLA ── */
     .table-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
     .table-header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;
       border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;}
     .table-header h3{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800;color:var(--navy);}
-    .table-search{padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;outline:none;width:240px;}
+    .tbl-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+    .table-search{padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;outline:none;width:220px;}
     .table-search:focus{border-color:var(--blue);}
+    .filter-select{padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;
+      font-family:'Montserrat',sans-serif;font-weight:700;color:var(--navy);outline:none;cursor:pointer;}
     table{width:100%;border-collapse:collapse;}
     th{background:#f8faff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
       letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:12px 14px;text-align:left;}
     td{padding:12px 14px;font-size:13px;border-top:1px solid var(--border);vertical-align:middle;}
     tr:hover td{background:#fafbff;}
     .chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;
-      font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;}
+      font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;white-space:nowrap;}
     .chip.verde{background:var(--green-lt);color:var(--green);}
+    .chip.rojo{background:var(--red-lt);color:var(--red);}
     .chip.gris{background:#f1f5f9;color:var(--muted);}
     .chip.morado{background:var(--purple-lt);color:var(--purple);}
-    .progress-bar{height:6px;background:var(--border);border-radius:4px;overflow:hidden;width:80px;display:inline-block;vertical-align:middle;margin-left:8px;}
-    .progress-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--blue));border-radius:4px;transition:width .4s;}
+    .chip.azul{background:var(--blue-lt);color:var(--blue);}
+    .pon-pills{display:flex;flex-wrap:wrap;gap:4px;}
+    .pon-pill{font-size:10px;font-family:'Montserrat',sans-serif;font-weight:700;padding:2px 8px;
+      border-radius:10px;background:var(--blue-lt);color:var(--blue);}
+    .pon-pill.marcada{background:var(--green-lt);color:var(--green);}
     .empty-msg{text-align:center;padding:40px;color:var(--muted);font-size:14px;line-height:1.7;}
 
     /* ── BTN ── */
     .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;
-      font-size:13px;font-weight:800;letter-spacing:.04em;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;}
-    .btn-primary{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);box-shadow:0 4px 16px rgba(21,140,255,.3);}
-    .btn-primary:hover{transform:translateY(-1px);}
+      font-size:14px;font-weight:800;letter-spacing:.04em;padding:13px 28px;border-radius:10px;border:none;cursor:pointer;transition:all .2s;}
+    .btn-entry{background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);box-shadow:0 4px 16px rgba(21,140,255,.3);}
+    .btn-entry:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(21,140,255,.4);}
+    .btn-exit-s{background:linear-gradient(135deg,#b91c1c,var(--red));color:var(--white);box-shadow:0 4px 16px rgba(220,38,38,.3);}
+    .btn-exit-s:hover{transform:translateY(-1px);}
 
     @media(max-width:700px){
       .stats{grid-template-columns:1fr 1fr;}
       .lookup-row{flex-direction:column;}
       .table-search{width:100%;}
-      .pcheck-item{flex-wrap:wrap;}
+      .section-tabs{flex-direction:column;}
+      .stab{border-right:none;border-bottom:1px solid var(--border);}
     }
   </style>
 </head>
@@ -168,98 +181,160 @@
 <!-- ═══ LOGIN ═══ -->
 <div id="loginScreen">
   <div class="login-card">
-    <div class="lock-icon">
+    <img src="Imagenes/logo.png" alt="Logo" class="login-logo"
+      onerror="this.style.display='none';document.getElementById('loginIcon').style.display='flex';"/>
+    <div class="lock-icon" id="loginIcon" style="display:none;">
       <svg width="28" height="28" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
         <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
       </svg>
     </div>
     <h2>Acceso Staff</h2>
-    <p class="sub">Ingresa la contraseña para acceder al panel de control de asistencia.</p>
+    <p class="sub">Panel de control · 18° Congreso NOM-001-SEDE</p>
     <div class="login-err" id="loginErr">Contraseña incorrecta. Intenta de nuevo.</div>
     <input type="password" id="passInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()"/>
-    <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="login()">Ingresar</button>
+    <button class="btn btn-entry" style="width:100%;justify-content:center;" onclick="login()">Ingresar al panel</button>
   </div>
 </div>
 
 <!-- ═══ APP ═══ -->
 <div id="appScreen">
+
   <header>
-    <div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
-        <h1>Panel de Asistencia</h1>
-        <span class="staff-badge">Staff Only</span>
+    <div class="header-left">
+      <img src="Imagenes/logo.png" alt="Logo" class="header-logo" onerror="this.style.display='none';"/>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:3px;">
+          <h1>Panel de Asistencia</h1>
+          <span class="staff-badge">Staff Only</span>
+        </div>
+        <div class="hsub">18° Congreso Nacional de la NOM-001-SEDE · Mayo 2026</div>
       </div>
-      <div class="sub">18° Congreso Nacional de la NOM-001-SEDE · Mayo 2026</div>
     </div>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <span id="reloj" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.7);"></span>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span id="reloj" style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:.04em;"></span>
       <button class="btn-ghost" onclick="logout()">Cerrar sesión</button>
     </div>
   </header>
+
+  <!-- Banner día activo -->
+  <div class="day-banner">
+    <div class="day-inner">
+      <div class="day-dot"></div>
+      <div>
+        <strong id="bannerDia">—</strong>
+        <span id="bannerPons" style="margin-left:8px;"></span>
+      </div>
+    </div>
+  </div>
 
   <div class="container">
 
     <!-- Stats -->
     <div class="stats">
       <div class="stat-card"><div class="num" id="statTotal">0</div><div class="lbl">Registros totales</div></div>
-      <div class="stat-card green"><div class="num" id="statAsist">0</div><div class="lbl">Check-ins registrados</div></div>
-      <div class="stat-card blue"><div class="num" id="statHoy">0</div><div class="lbl" id="statHoyLbl">En ponencia activa</div></div>
-      <div class="stat-card purple"><div class="num" id="statConst">0</div><div class="lbl">Con derecho a constancia</div></div>
+      <div class="stat-card green"><div class="num" id="statEntradas">0</div><div class="lbl" id="statEntLbl">Entradas hoy</div></div>
+      <div class="stat-card red"><div class="num" id="statSalidas">0</div><div class="lbl">Salidas hoy</div></div>
+      <div class="stat-card purple"><div class="num" id="statDentro">0</div><div class="lbl">Personas dentro ahora</div></div>
     </div>
 
-    <!-- Banner ponencia activa -->
-    <div class="active-banner off" id="activeBanner">
-      <div class="dot"></div>
-      <div><strong id="activeTema">Sin ponencia activa en este momento</strong><br><span id="activeHora" style="font-size:12px;"></span></div>
+    <!-- Tabs -->
+    <div class="section-tabs">
+      <button class="stab active-entry" id="tabEntrada" onclick="setSection('entrada')">
+        <span class="stab-icon">🟢</span>REGISTRO DE ENTRADA
+      </button>
+      <button class="stab" id="tabSalida" onclick="setSection('salida')">
+        <span class="stab-icon">🔴</span>REGISTRO DE SALIDA
+      </button>
+      <button class="stab" id="tabLista" onclick="setSection('lista')">
+        <span class="stab-icon">📋</span>LISTA GENERAL
+      </button>
     </div>
 
-    <!-- ── LOOKUP ── -->
-    <div class="lookup-card">
-      <h3>Validar asistencia por ID</h3>
-      <p class="sub">Escribe el número de identificación del asistente para ver sus ponencias y marcar asistencia.</p>
-      <div class="lookup-row">
-        <input type="text" id="lookupInput" placeholder="NOM-XXXXXXXX" onkeydown="if(event.key==='Enter')buscarID()"/>
-        <button class="btn btn-primary" onclick="buscarID()">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          Buscar
-        </button>
-      </div>
-
-      <!-- Not found -->
-      <div class="not-found-box" id="notFoundBox">
-        <p>✗ ID no encontrado en el sistema</p>
-        <div style="font-size:13px;color:var(--red);margin-top:4px;" id="notFoundTxt"></div>
-      </div>
-
-      <!-- Perfil asistente -->
-      <div class="perfil" id="perfilBox">
-        <div class="perfil-header">
-          <div>
-            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
-              <div class="perfil-name" id="pNombre">—</div>
-              <div class="perfil-id" id="pId">—</div>
+    <!-- ══ PANEL ENTRADA ══ -->
+    <div class="section-panel visible" id="panelEntrada">
+      <div class="lookup-card entry-mode">
+        <h3>🟢 Registro de Entrada</h3>
+        <p class="sub">
+          Ingresa el ID del asistente. El sistema detectará el día de hoy, marcará automáticamente
+          la asistencia a <strong>todas las ponencias que seleccionó para este día</strong> y registrará la hora de entrada.
+        </p>
+        <div class="lookup-row">
+          <input type="text" id="entradaInput" class="entry-inp" placeholder="NOM-XXXXXXXX"
+            onkeydown="if(event.key==='Enter')procesarEntrada()"
+            oninput="this.value=this.value.toUpperCase()"/>
+          <button class="btn btn-entry" onclick="procesarEntrada()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/>
+            </svg>
+            Registrar entrada
+          </button>
+        </div>
+        <div class="result-box" id="resultEntrada">
+          <div class="res-header">
+            <div class="res-avatar" id="resEntAvatar">—</div>
+            <div>
+              <div class="res-name" id="resEntNombre">—</div>
+              <div class="res-meta" id="resEntMeta">—</div>
+              <div class="res-id" id="resEntId">—</div>
             </div>
-            <div class="perfil-meta" id="pMeta">—</div>
           </div>
-          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-            <div class="constancia-badge no" id="constBadge">— / 9 ponencias</div>
-            <div style="font-size:11px;color:var(--muted);">para constancia: 9/9</div>
+          <div class="res-status" id="resEntStatus">—</div>
+          <div class="res-ponencias" id="resEntPons" style="display:none;">
+            <div class="res-ponencias-title">Ponencias marcadas automáticamente para hoy:</div>
+            <div id="resEntPonsList"></div>
           </div>
         </div>
-
-        <!-- Checklist de ponencias -->
-        <div class="ponencias-checklist" id="checklistBox"></div>
       </div>
     </div>
 
-    <!-- ── TABLA GLOBAL ── -->
-    <div class="table-card">
-      <div class="table-header">
-        <h3>Todos los Asistentes</h3>
-        <input class="table-search" id="tableSearch" type="text" placeholder="Buscar nombre, ID, empresa..." oninput="renderTabla(this.value)"/>
+    <!-- ══ PANEL SALIDA ══ -->
+    <div class="section-panel" id="panelSalida">
+      <div class="lookup-card exit-mode">
+        <h3>🔴 Registro de Salida</h3>
+        <p class="sub">Ingresa el ID del asistente al salir. El sistema registrará automáticamente la hora de salida de este día.</p>
+        <div class="lookup-row">
+          <input type="text" id="salidaInput" class="exit-inp" placeholder="NOM-XXXXXXXX"
+            onkeydown="if(event.key==='Enter')procesarSalida()"
+            oninput="this.value=this.value.toUpperCase()"/>
+          <button class="btn btn-exit-s" onclick="procesarSalida()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+            </svg>
+            Registrar salida
+          </button>
+        </div>
+        <div class="result-box" id="resultSalida">
+          <div class="res-header">
+            <div class="res-avatar" id="resSalAvatar">—</div>
+            <div>
+              <div class="res-name" id="resSalNombre">—</div>
+              <div class="res-meta" id="resSalMeta">—</div>
+              <div class="res-id" id="resSalId">—</div>
+            </div>
+          </div>
+          <div class="res-status" id="resSalStatus">—</div>
+        </div>
       </div>
-      <div id="tableWrap">
-        <div class="empty-msg">Los registros aparecerán aquí una vez que configures el Google Sheet.<br><small>Consulta el archivo <strong>INSTRUCCIONES.md</strong></small></div>
+    </div>
+
+    <!-- ══ PANEL LISTA ══ -->
+    <div class="section-panel" id="panelLista">
+      <div class="table-card">
+        <div class="table-header">
+          <h3>Lista General de Asistentes</h3>
+          <div class="tbl-controls">
+            <select class="filter-select" id="filterDia" onchange="renderTabla()">
+              <option value="">Todos los días</option>
+              <option value="26 mayo">26 Mayo</option>
+              <option value="27 mayo">27 Mayo</option>
+              <option value="28 mayo">28 Mayo</option>
+            </select>
+            <input class="table-search" id="tableSearch" type="text" placeholder="Buscar nombre o ID…" oninput="renderTabla()"/>
+          </div>
+        </div>
+        <div id="tableWrap">
+          <div class="empty-msg">Los registros aparecerán aquí una vez que configures el Google Sheet.<br><small>Consulta el archivo <strong>INSTRUCCIONES.md</strong></small></div>
+        </div>
       </div>
     </div>
 
@@ -267,36 +342,55 @@
 </div>
 
 <script>
-  // ─── CONFIGURACIÓN ───
-  const STAFF_PASSWORD  = 'NOM2026staff';  // ← cambia antes de publicar
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8JUnInYe4_XdHjNq0Xq5ZzwzAlhZh_arOiVZu9EVsg4WF6U6CvE-2Wr9gYyY6A3_d/exec';
+  // ─── CONFIGURACIÓN ───────────────────────────────────────────────────────────
+  const STAFF_PASSWORD  = 'NOM2026staff';       // ← Cambia antes de publicar
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz-1mHWrq9SWcKfCZC-fJNf9mRcdONN3PrUKCtGnAw_rHebU3hmtNo249cPrAI5Jo7x/exec';
+  // ────────────────────────────────────────────────────────────────────────────
 
-  // Catálogo completo de ponencias (id, tema, día, horaInicio, horaFin en minutos desde medianoche)
-  const PONENCIAS = [
-    { id:'p1', dia:'26 mayo', tema:'Protección para la seguridad; NMX-J-364-1 (serie)',                      horario:'12:00–13:15', ini:720,  fin:795  },
-    { id:'p2', dia:'26 mayo', tema:'Requisitos fundamentales de diseño y selección para conductores',         horario:'13:15–14:30', ini:795,  fin:870  },
-    { id:'p3', dia:'26 mayo', tema:'Perspectiva horizontal de una instalación eléctrica de utilización',      horario:'14:30–15:45', ini:870,  fin:945  },
-    { id:'p4', dia:'27 mayo', tema:'Instalaciones eléctricas de potencia — Requisitos eléctricos',            horario:'11:00–12:15', ini:660,  fin:735  },
-    { id:'p5', dia:'27 mayo', tema:'Instalaciones eléctricas de potencia — Requisitos mecánicos',             horario:'12:15–13:30', ini:735,  fin:810  },
-    { id:'p6', dia:'27 mayo', tema:'Controles de ingeniería para la gestión segura',                          horario:'13:30–14:45', ini:810,  fin:885  },
-    { id:'p7', dia:'28 mayo', tema:'Retos y desafíos en el proceso de modificación de la NOM-001-SEDE',       horario:'11:00–12:15', ini:660,  fin:735  },
-    { id:'p8', dia:'28 mayo', tema:'Ley de infraestructura de la calidad — Autoridades normalizadoras',       horario:'12:15–13:30', ini:735,  fin:810  },
-    { id:'p9', dia:'28 mayo', tema:'Evaluación de la conformidad de la NOM-001-SEDE',                         horario:'13:30–14:45', ini:810,  fin:885  },
-  ];
+  // Catálogo de ponencias por día
+  // La "clave" de cada ponencia debe coincidir con el texto guardado en la columna Ponencias del Sheet
+  const PONENCIAS_DIA = {
+    '26 mayo': [
+      { key: 'Protección para la seguridad; NMX-J-364-1',                                   horario: '12:00–13:15' },
+      { key: 'Requisitos fundamentales de diseño y selección para conductores',              horario: '13:15–14:30' },
+      { key: 'Perspectiva horizontal de una instalación eléctrica de utilización',           horario: '14:30–15:45' },
+    ],
+    '27 mayo': [
+      { key: 'Instalaciones eléctricas de potencia — Requisitos eléctricos fundamentales',  horario: '11:00–12:15' },
+      { key: 'Instalaciones eléctricas de potencia — Requisitos mecánicos fundamentales',   horario: '12:15–13:30' },
+      { key: 'Controles de ingeniería para la gestión segura',                               horario: '13:30–14:45' },
+    ],
+    '28 mayo': [
+      { key: 'Retos y desafíos en el proceso de modificación de la NOM-001-SEDE',           horario: '11:00–12:15' },
+      { key: 'Ley de infraestructura de la calidad — Autoridades normalizadoras',           horario: '12:15–13:30' },
+      { key: 'Evaluación de la conformidad de la NOM-001-SEDE',                             horario: '13:30–14:45' },
+    ],
+  };
 
-  // Mapa de días del congreso (para detectar ponencia activa)
-  const DIA_MAP = { '2026-05-26':'26 mayo', '2026-05-27':'27 mayo', '2026-05-28':'28 mayo' };
+  // Detectar el día del congreso según la fecha real del sistema
+  const DIA_FECHA = {
+    '2026-05-26': '26 mayo',
+    '2026-05-27': '27 mayo',
+    '2026-05-28': '28 mayo',
+  };
 
   let allRegistros = [];
-  let currentUser  = null;
+
+  // ── DETECTAR DÍA ACTUAL ──
+  function getDiaHoy() {
+    const fecha = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD'
+    return DIA_FECHA[fecha] || null;
+  }
 
   // ── AUTH ──
   function login() {
     if (document.getElementById('passInput').value === STAFF_PASSWORD) {
       document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('appScreen').style.display = 'block';
+      document.getElementById('appScreen').style.display   = 'block';
       iniciarReloj();
+      actualizarBanner();
       cargarDatos();
+      setTimeout(() => document.getElementById('entradaInput').focus(), 300);
     } else {
       document.getElementById('loginErr').style.display = 'block';
       document.getElementById('passInput').value = '';
@@ -304,259 +398,307 @@
   }
   function logout() {
     document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('appScreen').style.display = 'none';
+    document.getElementById('appScreen').style.display   = 'none';
     document.getElementById('passInput').value = '';
-    clearPerfil();
+    clearResults();
   }
 
   // ── RELOJ ──
   function iniciarReloj() {
-    function tick() {
-      const now = new Date();
-      document.getElementById('reloj').textContent = now.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-      actualizarBanner(now);
-    }
+    const tick = () => {
+      document.getElementById('reloj').textContent =
+        new Date().toLocaleTimeString('es-MX', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+    };
     tick(); setInterval(tick, 1000);
   }
 
-  // ── PONENCIA ACTIVA ──
-  function getPonenciaActiva(now) {
-    const fecha = now.toISOString().slice(0,10);
-    const diaLabel = DIA_MAP[fecha];
-    if (!diaLabel) return null;
-    const mins = now.getHours()*60 + now.getMinutes();
-    return PONENCIAS.find(p => p.dia === diaLabel && mins >= p.ini && mins < p.fin) || null;
+  // ── BANNER DÍA ──
+  function actualizarBanner() {
+    const dia = getDiaHoy();
+    const strong = document.getElementById('bannerDia');
+    const span   = document.getElementById('bannerPons');
+    if (dia) {
+      strong.textContent = '📅 Hoy: ' + dia + ' — ' + {
+        '26 mayo': 'Instalaciones Eléctricas en Baja Tensión',
+        '27 mayo': 'Instalaciones Eléctricas en Alta Tensión',
+        '28 mayo': 'Trabajos de Modificación de la NOM-001-SEDE-2012',
+      }[dia];
+      span.textContent = '· ' + (PONENCIAS_DIA[dia]?.length || 0) + ' ponencias programadas';
+    } else {
+      strong.textContent = 'Hoy no es día de congreso — las entradas se registrarán sin ponencias asociadas';
+      span.textContent = '';
+    }
   }
 
-  function actualizarBanner(now) {
-    const activa = getPonenciaActiva(now);
-    const banner = document.getElementById('activeBanner');
-    if (activa) {
-      banner.className = 'active-banner on';
-      document.getElementById('activeTema').textContent = activa.tema;
-      document.getElementById('activeHora').textContent = activa.dia + ' · ' + activa.horario;
-    } else {
-      banner.className = 'active-banner off';
-      document.getElementById('activeTema').textContent = 'Sin ponencia activa en este momento';
-      document.getElementById('activeHora').textContent = '';
-    }
-    // Re-render perfil si hay uno abierto (para actualizar highlight)
-    if (currentUser) renderPerfil(currentUser);
+  // ── TABS ──
+  function setSection(sec) {
+    ['entrada','salida','lista'].forEach(s => {
+      document.getElementById('panel' + cap(s)).classList.toggle('visible', s === sec);
+      const tab = document.getElementById('tab' + cap(s));
+      tab.className = 'stab' + (s === sec ? ' active-' + (s === 'lista' ? 'list' : s === 'salida' ? 'exit' : 'entry') : '');
+    });
+    clearResults();
+    if (sec === 'entrada') setTimeout(() => document.getElementById('entradaInput').focus(), 100);
+    if (sec === 'salida')  setTimeout(() => document.getElementById('salidaInput').focus(), 100);
   }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
   // ── CARGAR DATOS ──
   async function cargarDatos() {
     try {
-      const r = await fetch(APPS_SCRIPT_URL + '?action=getAll', {cache:'no-store'});
+      const r    = await fetch(APPS_SCRIPT_URL + '?action=getAll', {cache:'no-store'});
       const data = await r.json();
       allRegistros = data.registros || [];
     } catch(e) {
       allRegistros = [];
     }
-    renderTabla();
     updateStats();
+    renderTabla();
   }
 
   // ── STATS ──
   function updateStats() {
-    const total = allRegistros.length;
-    let totalCheckins = 0, enActiva = 0, conConstancia = 0;
-    const activa = getPonenciaActiva(new Date());
+    const dia = getDiaHoy() || '';
+    let entradas = 0, salidas = 0, dentro = 0;
     allRegistros.forEach(r => {
       const asis = r.asistencias || {};
-      const cnt = Object.values(asis).filter(Boolean).length;
-      totalCheckins += cnt;
-      if (activa && asis[activa.id]) enActiva++;
-      if (cnt >= 9) conConstancia++;
+      if (asis[dia]?.entrada) { entradas++; if (!asis[dia]?.salida) dentro++; }
+      if (asis[dia]?.salida)  salidas++;
     });
-    document.getElementById('statTotal').textContent   = total;
-    document.getElementById('statAsist').textContent   = totalCheckins;
-    document.getElementById('statHoy').textContent     = enActiva;
-    document.getElementById('statConst').textContent   = conConstancia;
-    document.getElementById('statHoyLbl').textContent  = activa ? `En "${activa.tema.slice(0,22)}…"` : 'En ponencia activa';
+    document.getElementById('statTotal').textContent    = allRegistros.length;
+    document.getElementById('statEntradas').textContent = entradas;
+    document.getElementById('statSalidas').textContent  = salidas;
+    document.getElementById('statDentro').textContent   = dentro;
+    document.getElementById('statEntLbl').textContent   = dia ? `Entradas hoy (${dia})` : 'Entradas hoy';
   }
 
-  // ── BUSCAR ID ──
-  function buscarID() {
-    const val = document.getElementById('lookupInput').value.trim().toUpperCase();
-    document.getElementById('notFoundBox').style.display = 'none';
-    document.getElementById('perfilBox').style.display   = 'none';
-    currentUser = null;
+  // ─────────────────────────────────────────────────────────────────────────────
+  // ── PROCESAR ENTRADA ──
+  // 1. Busca al asistente por ID
+  // 2. Detecta el día de hoy
+  // 3. Filtra las ponencias de hoy que el asistente seleccionó al registrarse
+  // 4. Marca todas esas ponencias con la hora de entrada
+  // 5. Envía todo al Google Sheet
+  // ─────────────────────────────────────────────────────────────────────────────
+  async function procesarEntrada() {
+    const val  = document.getElementById('entradaInput').value.trim().toUpperCase();
+    const hora = new Date().toLocaleTimeString('es-MX', {hour:'2-digit', minute:'2-digit'});
+    const dia  = getDiaHoy();
+    clearBox('resultEntrada');
     if (!val) return;
 
     const reg = allRegistros.find(r => r.id.toUpperCase() === val);
+
+    // ID no encontrado
     if (!reg) {
-      document.getElementById('notFoundBox').style.display = 'block';
-      document.getElementById('notFoundTxt').textContent = `No existe ningún registro con el ID "${val}"`;
-      return;
-    }
-    currentUser = reg;
-    renderPerfil(reg);
-  }
-
-  function renderPerfil(reg) {
-    const asis    = reg.asistencias || {};
-    const total9  = Object.values(asis).filter(Boolean).length;
-    const activa  = getPonenciaActiva(new Date());
-
-    document.getElementById('pNombre').textContent = reg.nombre;
-    document.getElementById('pId').textContent     = reg.id;
-    document.getElementById('pMeta').textContent   = `${reg.empresa||'—'} · ${reg.cargo||'—'} · ${reg.pais||'—'}`;
-
-    // Badge constancia
-    const badge = document.getElementById('constBadge');
-    if (total9 >= 9) {
-      badge.className = 'constancia-badge si';
-      badge.textContent = '🎓 ' + total9 + '/9 — Constancia';
-    } else {
-      badge.className = 'constancia-badge no';
-      badge.textContent = total9 + '/9 ponencias';
+      mostrarResultado('entrada', 'notfound', val.slice(0,2)||'?', '— ID no encontrado —',
+        `No existe ningún asistente con el ID "${val}"`, '', 'err', '❌ Verifica el número de identificación', null, null);
+      limpiarInput('entradaInput'); return;
     }
 
-    // Ponencias seleccionadas por el asistente (guardadas como texto pipe-separado)
-    const selTemas = (reg.ponencias || '').split('|').map(s => s.trim()).filter(Boolean);
+    // Ya tiene entrada hoy
+    if (reg.asistencias?.[dia]?.entrada) {
+      mostrarResultado('entrada', 'already', reg.nombre.slice(0,2).toUpperCase(), reg.nombre,
+        `${reg.empresa||'—'} · ${reg.cargo||'—'}`, reg.id, 'warn',
+        `⚠ Ya tiene entrada registrada hoy a las ${reg.asistencias[dia].entrada}`, null, null);
+      limpiarInput('entradaInput'); return;
+    }
 
-    // Agrupar por día
-    const dias = ['26 mayo','27 mayo','28 mayo'];
-    const dayTitles = {
-      '26 mayo':'Instalaciones Eléctricas en Baja Tensión',
-      '27 mayo':'Instalaciones Eléctricas en Alta Tensión',
-      '28 mayo':'Trabajos de Modificación de la NOM-001-SEDE-2012'
-    };
+    // ✅ Determinar qué ponencias de hoy seleccionó el asistente
+    const ponenciasDelDia   = dia ? (PONENCIAS_DIA[dia] || []) : [];
+    const ponenciasRegistradas = reg.ponencias || ''; // texto pipe-separado guardado en el Sheet
 
-    let html = '';
-    dias.forEach(dia => {
-      const ponsDia = PONENCIAS.filter(p => p.dia === dia);
-      let itemsHTML = '';
-      ponsDia.forEach(p => {
-        const seleccionada = selTemas.some(t => t.toLowerCase().includes(p.tema.toLowerCase().slice(0,30)));
-        const yaAsistio    = asis[p.id];
-        const esActiva     = activa && activa.id === p.id;
+    // Filtrar las que corresponden a hoy comparando con el texto guardado
+    const ponenciasHoy = ponenciasDelDia.filter(p =>
+      ponenciasRegistradas.toLowerCase().includes(p.key.toLowerCase().slice(0, 35))
+    );
 
-        let estadoClass = 'pending';
-        let estadoIcon  = '—';
-        let itemClass   = '';
-        let btnHTML     = '';
+    // Actualizar en memoria
+    if (!reg.asistencias) reg.asistencias = {};
+    if (!reg.asistencias[dia]) reg.asistencias[dia] = {};
+    reg.asistencias[dia].entrada    = hora;
+    reg.asistencias[dia].ponencias  = ponenciasHoy.map(p => p.key);
 
-        if (!seleccionada) {
-          estadoClass = 'no-reg';
-          estadoIcon  = '·';
-          itemClass   = 'no-selec';
-          btnHTML     = `<button class="btn-marcar no-reg" disabled title="El asistente no seleccionó esta ponencia">No seleccionada</button>`;
-        } else if (yaAsistio) {
-          estadoClass = 'ok';
-          estadoIcon  = '✓';
-          itemClass   = 'asistio';
-          btnHTML     = `<button class="btn-marcar" disabled>✓ ${yaAsistio}</button>`;
-        } else if (esActiva) {
-          estadoClass = 'active-now';
-          estadoIcon  = '▶';
-          itemClass   = 'activa';
-          btnHTML     = `<button class="btn-marcar" onclick="marcarPonencia('${p.id}')">Marcar asistencia</button>`;
-        } else {
-          itemClass = '';
-          btnHTML   = `<button class="btn-marcar" onclick="marcarPonencia('${p.id}')">Marcar</button>`;
-        }
-
-        const horaLabel = esActiva
-          ? `<span class="live">🔴 EN CURSO · ${p.horario}</span>`
-          : p.horario;
-
-        itemsHTML += `
-          <div class="pcheck-item ${itemClass}" id="pitem-${p.id}">
-            <div class="pcheck-estado ${estadoClass}">${estadoIcon}</div>
-            <div class="pcheck-info">
-              <div class="pcheck-tema">${p.tema}</div>
-              <div class="pcheck-hora">${p.dia} · ${horaLabel}</div>
-            </div>
-            ${btnHTML}
-          </div>`;
-      });
-
-      html += `
-        <div class="pcheck-day">
-          <div class="pcheck-day-header">
-            <div class="pcheck-day-badge">${dia}</div>
-            <div class="pcheck-day-title">${dayTitles[dia]}</div>
-          </div>
-          ${itemsHTML}
-        </div>`;
-    });
-
-    document.getElementById('checklistBox').innerHTML = html;
-    document.getElementById('perfilBox').style.display = 'block';
-  }
-
-  // ── MARCAR PONENCIA ──
-  async function marcarPonencia(ponenciaId) {
-    if (!currentUser) return;
-    const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
-    if (!currentUser.asistencias) currentUser.asistencias = {};
-    currentUser.asistencias[ponenciaId] = hora;
-
-    // Actualizar también en allRegistros
-    const idx = allRegistros.findIndex(r => r.id === currentUser.id);
-    if (idx >= 0) allRegistros[idx].asistencias = currentUser.asistencias;
-
+    // Enviar al Apps Script
     try {
       await fetch(APPS_SCRIPT_URL, {
-        method:'POST', mode:'no-cors',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({action:'checkIn', id:currentUser.id, ponenciaId, hora})
+        method: 'POST', mode: 'no-cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          action:   'entrada',
+          id:       reg.id,
+          nombre:   reg.nombre,
+          dia:      dia || 'fuera-de-congreso',
+          hora,
+          ponencias: ponenciasHoy.map(p => p.key),
+        })
       });
     } catch(e) { console.warn(e); }
 
-    renderPerfil(currentUser);
-    renderTabla(document.getElementById('tableSearch').value);
+    mostrarResultado('entrada', 'ok-entry', reg.nombre.slice(0,2).toUpperCase(), reg.nombre,
+      `${reg.empresa||'—'} · ${reg.cargo||'—'} · ${reg.pais||'—'}`, reg.id, 'ok',
+      `✅ Entrada registrada automáticamente a las ${hora}`, ponenciasHoy, hora);
+
+    limpiarInput('entradaInput');
     updateStats();
+    renderTabla();
   }
 
-  function clearPerfil() {
-    document.getElementById('perfilBox').style.display   = 'none';
-    document.getElementById('notFoundBox').style.display = 'none';
-    document.getElementById('lookupInput').value = '';
-    currentUser = null;
+  // ─────────────────────────────────────────────────────────────────────────────
+  // ── PROCESAR SALIDA ──
+  // ─────────────────────────────────────────────────────────────────────────────
+  async function procesarSalida() {
+    const val  = document.getElementById('salidaInput').value.trim().toUpperCase();
+    const hora = new Date().toLocaleTimeString('es-MX', {hour:'2-digit', minute:'2-digit'});
+    const dia  = getDiaHoy();
+    clearBox('resultSalida');
+    if (!val) return;
+
+    const reg = allRegistros.find(r => r.id.toUpperCase() === val);
+
+    if (!reg) {
+      mostrarResultado('salida', 'notfound', '?', '— ID no encontrado —',
+        `No existe ningún asistente con el ID "${val}"`, '', 'err', '❌ Verifica el número de identificación', null, null);
+      limpiarInput('salidaInput'); return;
+    }
+    if (!reg.asistencias?.[dia]?.entrada) {
+      mostrarResultado('salida', 'notfound', reg.nombre.slice(0,2).toUpperCase(), reg.nombre,
+        `${reg.empresa||'—'} · ${reg.cargo||'—'}`, reg.id, 'warn',
+        '⚠ Este asistente no tiene entrada registrada hoy', null, null);
+      limpiarInput('salidaInput'); return;
+    }
+    if (reg.asistencias?.[dia]?.salida) {
+      mostrarResultado('salida', 'already', reg.nombre.slice(0,2).toUpperCase(), reg.nombre,
+        `${reg.empresa||'—'} · ${reg.cargo||'—'}`, reg.id, 'warn',
+        `⚠ Ya tiene salida registrada hoy a las ${reg.asistencias[dia].salida}`, null, null);
+      limpiarInput('salidaInput'); return;
+    }
+
+    // ✅ Registrar salida
+    reg.asistencias[dia].salida = hora;
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({action: 'salida', id: reg.id, nombre: reg.nombre, dia: dia || 'fuera-de-congreso', hora})
+      });
+    } catch(e) { console.warn(e); }
+
+    mostrarResultado('salida', 'ok-exit', reg.nombre.slice(0,2).toUpperCase(), reg.nombre,
+      `${reg.empresa||'—'} · ${reg.cargo||'—'} · ${reg.pais||'—'}`, reg.id, 'ok',
+      `🚪 Salida registrada automáticamente a las ${hora}`, null, null);
+
+    limpiarInput('salidaInput');
+    updateStats();
+    renderTabla();
+  }
+
+  // ── HELPERS UI ──
+  function mostrarResultado(tipo, boxCls, avatarTxt, nombre, meta, id, statusCls, statusTxt, ponencias, hora) {
+    const pfx = tipo === 'entrada' ? 'resEnt' : 'resSal';
+    const box = document.getElementById('result' + cap(tipo));
+    box.className = 'result-box ' + boxCls;
+    box.style.display = 'block';
+    document.getElementById(pfx + 'Avatar').textContent  = avatarTxt;
+    document.getElementById(pfx + 'Nombre').textContent  = nombre;
+    document.getElementById(pfx + 'Meta').textContent    = meta;
+    document.getElementById(pfx + 'Id').textContent      = id;
+    const st = document.getElementById(pfx + 'Status');
+    st.className = 'res-status ' + statusCls;
+    st.textContent = statusTxt;
+
+    // Ponencias solo en entrada
+    if (tipo === 'entrada') {
+      const ponBox  = document.getElementById('resEntPons');
+      const ponList = document.getElementById('resEntPonsList');
+      if (ponencias && ponencias.length > 0) {
+        ponList.innerHTML = ponencias.map(p =>
+          `<div class="res-pon-item">
+            <div class="res-pon-check">
+              <svg width="12" height="12" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <span>${p.key}</span>
+            <span class="res-pon-hora">${p.horario}</span>
+          </div>`
+        ).join('');
+        ponBox.style.display = 'block';
+      } else if (ponencias && ponencias.length === 0) {
+        ponList.innerHTML = '<div style="font-size:13px;color:var(--muted);padding:10px 0;">Este asistente no seleccionó ponencias para hoy.</div>';
+        ponBox.style.display = 'block';
+      } else {
+        ponBox.style.display = 'none';
+      }
+    }
+  }
+
+  function clearBox(id) { document.getElementById(id).style.display = 'none'; }
+  function clearResults() {
+    ['resultEntrada','resultSalida'].forEach(clearBox);
+    ['entradaInput','salidaInput'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+  }
+  function limpiarInput(id) {
+    const el = document.getElementById(id);
+    el.value = '';
+    setTimeout(() => el.focus(), 100);
   }
 
   // ── TABLA ──
-  function renderTabla(q = '') {
-    const query = (q||'').toLowerCase();
-    const filtrado = allRegistros.filter(r =>
-      !query || (r.nombre||'').toLowerCase().includes(query) ||
-      (r.id||'').toLowerCase().includes(query) || (r.empresa||'').toLowerCase().includes(query)
+  function renderTabla() {
+    const q      = (document.getElementById('tableSearch')?.value || '').toLowerCase();
+    const filDia = document.getElementById('filterDia')?.value || '';
+    const dia    = getDiaHoy() || '';
+
+    const datos = allRegistros.filter(r =>
+      (!q || (r.nombre||'').toLowerCase().includes(q) || (r.id||'').toLowerCase().includes(q)) &&
+      (!filDia || (r.ponencias||'').includes(filDia) || (r.asistencias?.[filDia]))
     );
-    if (filtrado.length === 0) {
+
+    if (datos.length === 0) {
       document.getElementById('tableWrap').innerHTML =
-        '<div class="empty-msg">Sin resultados. Conecta tu Google Sheet para ver los datos.</div>';
+        '<div class="empty-msg">Sin resultados.<br><small>Conecta tu Google Sheet — ver <strong>INSTRUCCIONES.md</strong></small></div>';
       return;
     }
-    const rows = filtrado.map(r => {
-      const asis  = r.asistencias || {};
-      const cnt   = Object.values(asis).filter(Boolean).length;
-      const pct   = Math.round(cnt/9*100);
-      const chip  = cnt >= 9
-        ? `<span class="chip morado">🎓 Constancia</span>`
-        : `<span class="chip ${cnt>0?'verde':'gris'}">${cnt}/9</span>`;
+
+    const rows = datos.map(r => {
+      const asiHoy = r.asistencias?.[dia] || {};
+      let estadoChip;
+      if (asiHoy.entrada && asiHoy.salida) {
+        estadoChip = `<span class="chip gris">Salió ${asiHoy.salida}</span>`;
+      } else if (asiHoy.entrada) {
+        estadoChip = `<span class="chip verde">✓ Dentro · ${asiHoy.entrada}</span>`;
+      } else {
+        estadoChip = `<span class="chip rojo">Sin entrada hoy</span>`;
+      }
+
+      // Ponencias seleccionadas (resumidas)
+      const ponDia = dia ? (PONENCIAS_DIA[dia] || []) : [];
+      const ponTexto = r.ponencias || '';
+      const ponHoy = ponDia.filter(p => ponTexto.toLowerCase().includes(p.key.toLowerCase().slice(0,35)));
+      const ponChips = ponHoy.length > 0
+        ? ponHoy.map(p => `<span class="pon-pill ${asiHoy.entrada ? 'marcada' : ''}">${p.horario}</span>`).join('')
+        : `<span class="chip gris">—</span>`;
+
       return `<tr>
-        <td><strong style="font-family:'Montserrat',sans-serif">${r.id}</strong></td>
+        <td><strong style="font-family:'Montserrat',sans-serif;font-size:12px;">${r.id}</strong></td>
         <td>${r.nombre}</td>
         <td>${r.empresa||'—'}</td>
-        <td>${r.cargo||'—'}</td>
-        <td>${chip} <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div></td>
-        <td><button class="btn-marcar" onclick="quickLoad('${r.id}')">Ver / marcar</button></td>
+        <td>${asiHoy.entrada ? `<span class="chip azul">${asiHoy.entrada}</span>` : `<span class="chip gris">—</span>`}</td>
+        <td>${asiHoy.salida  ? `<span class="chip rojo">${asiHoy.salida}</span>` : `<span class="chip gris">—</span>`}</td>
+        <td><div class="pon-pills">${ponChips}</div></td>
+        <td>${estadoChip}</td>
       </tr>`;
     }).join('');
+
     document.getElementById('tableWrap').innerHTML = `
       <table>
-        <thead><tr><th>ID</th><th>Nombre</th><th>Empresa</th><th>Cargo</th><th>Asistencias</th><th>Acción</th></tr></thead>
+        <thead>
+          <tr>
+            <th>ID</th><th>Nombre</th><th>Empresa</th>
+            <th>Entrada</th><th>Salida</th><th>Ponencias hoy</th><th>Estado</th>
+          </tr>
+        </thead>
         <tbody>${rows}</tbody>
       </table>`;
-  }
-
-  function quickLoad(id) {
-    document.getElementById('lookupInput').value = id;
-    buscarID();
-    document.getElementById('lookupInput').scrollIntoView({behavior:'smooth', block:'center'});
   }
 
   // Auto-refresh cada 30 s
