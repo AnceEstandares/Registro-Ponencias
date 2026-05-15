@@ -34,20 +34,20 @@
     }
     .header-inner {
       max-width: 1000px; margin: 0 auto; padding: 48px 24px 40px;
-      position: relative; z-index: 1; display: flex; align-items: center; gap: 40px;
+      position: relative; z-index: 1; display: flex; align-items: center; gap: 24px;
     }
-    .logo-box {
-      min-width: 130px; height: 90px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .logo-box img {
-      max-height: 90px; max-width: 160px;
-      object-fit: contain; filter: brightness(0) invert(1);
+    .header-text { flex: 1; }
+    .logos-group {
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
     }
     .logo-img {
-      max-width: 160px; max-height: 100px; object-fit: contain;
-      border-radius: var(--radius); flex-shrink: 0;
+      width: 80px; height: 80px; object-fit: contain;
+      border-radius: 50%; flex-shrink: 0;
+    }
+    .logo-placeholder {
+      width: 80px; height: 80px; border-radius: 50%; flex-shrink: 0;
+      border: 2px dashed rgba(255,255,255,.3);
+      background: rgba(255,255,255,.05);
     }
     .badge {
       display: inline-block;
@@ -213,7 +213,6 @@
 
 <header>
   <div class="header-inner">
-    <img src="Imagenes/conanceblanco.png" alt="Logo NOM-001-SEDE" class="logo-img" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/><div class="logo-box" id="logoFallback" style="display:none;">Logo<br>aquí</div>
     <div class="header-text">
       <div class="badge">18° Edición · 2026</div>
       <h1>Congreso Nacional de la<br><span>NOM-001-SEDE</span></h1>
@@ -223,6 +222,11 @@
         <div class="date-chip">27 Mayo <small>Alta Tensión</small></div>
         <div class="date-chip">28 Mayo <small>Modificación NOM</small></div>
       </div>
+    </div>
+    <div class="logos-group">
+      <img src="Imagenes/CONANCE.png" alt="Logo CONANCE" class="logo-img"/>
+      <img src="Imagenes/CANAME.png" alt="Logo CANAME" class="logo-img"/>
+      <img src="Imagenes/NOM-001-SEDE2LOGOS2026-01.png" alt="Logo NOM" class="logo-img"/>
     </div>
   </div>
 </header>
