@@ -260,19 +260,19 @@
   // Ponencias por día (mismo orden que index.html)
   const PONENCIAS_DIA = {
     0: [
-      { horario: '12:00–13:15', tema: 'Protección para la seguridad; NMX-J-364-1 — Norma universal para la protección para la seguridad' },
-      { horario: '13:15–14:30', tema: 'Requisitos fundamentales de diseño y selección para conductores y métodos de alambrado' },
-      { horario: '14:30–15:45', tema: 'Perspectiva horizontal de una instalación eléctrica de utilización — Diseño, construcción y comprobación' },
+      { horario: '12:15–13:30', ponente: 'Ing. Fernando Lecuona Carrillo',                                          tema: 'Protección para la seguridad; NMX-J-364-1 (serie) Norma universal para la protección para la seguridad.' },
+      { horario: '13:30–14:45', ponente: 'Ing. Juan Manuel Máximo León',                                            tema: 'Requisitos fundamentales de diseño y selección para conductores y métodos de alambrado.' },
+      { horario: '14:45–16:00', ponente: 'M. en C. Miriam F. Sánchez Galván',                                      tema: 'Perspectiva horizontal de una instalación eléctrica de utilización - Diseño, construcción y comprobación de las instalaciones eléctricas.' },
     ],
     1: [
-      { horario: '11:00–12:15', tema: 'Instalaciones eléctricas de potencia — Requisitos eléctricos fundamentales' },
-      { horario: '12:15–13:30', tema: 'Instalaciones eléctricas de potencia — Requisitos mecánicos fundamentales' },
-      { horario: '13:30–14:45', tema: 'Controles de ingeniería para la gestión segura, operación y actividad de trabajo en instalaciones eléctricas' },
+      { horario: '11:00–12:15', ponente: 'M. en C. Jorge Obed Guevara Madrigal',                                   tema: 'Controles de ingeniería para la gestión segura, a la operación y a la actividad de trabajo en instalaciones eléctricas de potencia.' },
+      { horario: '12:15–13:30', ponente: 'Participación especial',                                                  tema: 'Instalaciones eléctricas de potencia – Requisitos eléctricos fundamentales.' },
+      { horario: '13:30–14:45', ponente: 'Participación especial',                                                  tema: 'Instalaciones eléctricas de potencia – Requisitos mecánicos fundamentales.' },
     ],
     2: [
-      { horario: '11:00–12:15', tema: 'Retos y desafíos en el proceso de modificación de la NOM-001-SEDE-2012' },
-      { horario: '12:15–13:30', tema: 'Ley de infraestructura de la calidad — Autoridades normalizadoras y proceso de modificación de NOM-001-SEDE' },
-      { horario: '13:30–14:45', tema: 'Evaluación de la conformidad de la NOM-001-SEDE conforme a la Ley de Infraestructura de la Calidad' },
+      { horario: '11:00–12:15', ponente: 'Ing. Bulmaro Sánchez Hernández / Ing. Manuel Germán López Flores',       tema: 'Retos y desafíos en el proceso de modificación de la NOM-00-SEDE-2012.' },
+      { horario: '12:15–13:30', ponente: 'Ing. Luis Ivan Hernández Becerril',                                      tema: 'Ley de infraestructura de la calidad – Autoridades normalizadoras y el proceso de modificación de NOM-00-SEDE.' },
+      { horario: '13:30–14:45', ponente: 'Participación especial',                                                  tema: 'Evaluación de la conformidad de la NOM-001-SEDE conforme a la Ley de Infraestructura de la Calidad.' },
     ]
   };
   const DIAS_LABEL = ['26 mayo','27 mayo','28 mayo'];
@@ -502,7 +502,7 @@
       else statusHtml = `<span class="pon-status pendiente">Pendiente</span>`;
       return `<div class="pon-item">
         <span class="pon-hora">${p.horario}</span>
-        <span style="flex:1;font-size:12px;color:var(--text)">${p.tema.substring(0,60)}…</span>
+        <span style="flex:1;font-size:12px;color:var(--text)">${p.tema.substring(0,60)}… <span style="color:var(--muted);font-style:italic;">${p.ponente}</span></span>
         <div style="display:flex;gap:4px;flex-shrink:0;">${statusHtml}</div>
       </div>`;
     }).join('');

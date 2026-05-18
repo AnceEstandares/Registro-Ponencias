@@ -38,14 +38,14 @@
     }
     .header-text { flex: 1; }
     .logos-group {
-      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+      display: flex; align-items: center; gap: 16px; flex-shrink: 0;
     }
     .logo-img {
-      width: 80px; height: 80px; object-fit: contain;
+      width: 120px; height: 120px; object-fit: contain;
       border-radius: 50%; flex-shrink: 0;
     }
     .logo-placeholder {
-      width: 80px; height: 80px; border-radius: 50%; flex-shrink: 0;
+      width: 120px; height: 120px; border-radius: 50%; flex-shrink: 0;
       border: 2px dashed rgba(255,255,255,.3);
       background: rgba(255,255,255,.05);
     }
@@ -142,6 +142,7 @@
     .ponencia-info { flex: 1; }
     .ponencia-tema { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; line-height: 1.4; }
     .ponencia-eslogan { font-size: 13px; color: var(--muted); line-height: 1.4; margin-bottom: 6px; }
+    .ponencia-ponente { font-size: 12px; color: var(--navy); font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
     .ponencia-horario {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 12px; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--blue);
@@ -281,86 +282,107 @@
       <h2>Selección de Ponencias</h2>
       <p class="subtitle">Elige las ponencias a las que planeas asistir. Asistir a las 9 te hace acreedor a una constancia de participación.</p>
 
+      <!-- ── DÍA 26 MAYO: Instalaciones Eléctricas en Baja Tensión ── -->
       <div class="day-section">
         <div class="day-header"><div class="day-badge">26 / Mayo / 2026</div><div class="day-title">Instalaciones Eléctricas en Baja Tensión</div></div>
-        <div class="ponencia-card" onclick="toggleP(this)" data-dia="26 mayo" data-tema="Protección para la seguridad; NMX-J-364-1 — Norma universal para la protección para la seguridad">
+
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="26 mayo" data-tema="Protección para la seguridad; NMX-J-364-1 (serie) Norma universal para la protección para la seguridad.">
           <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
           <div class="ponencia-info">
-            <div class="ponencia-tema">Protección para la seguridad; NMX-J-364-1 (serie) — Norma universal para la protección para la seguridad.</div>
+            <div class="ponencia-tema">Protección para la seguridad; NMX-J-364-1 (serie) Norma universal para la protección para la seguridad.</div>
             <div class="ponencia-eslogan">Protección para la seguridad de las personas y los equipos.</div>
-            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12:15 – 13:30</div>
+            <div class="ponencia-ponente"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Ing. Fernando Lecuona Carrillo</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12:15 – 13:30 (15 min preguntas y respuestas)</div>
           </div>
         </div>
-        <div class="ponencia-card" onclick="toggleP(this)" data-dia="26 mayo" data-tema="Requisitos fundamentales de diseño y selección para conductores y métodos de alambrado">
+
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="26 mayo" data-tema="Requisitos fundamentales de diseño y selección para conductores y métodos de alambrado.">
           <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
           <div class="ponencia-info">
             <div class="ponencia-tema">Requisitos fundamentales de diseño y selección para conductores y métodos de alambrado.</div>
             <div class="ponencia-eslogan">Funcionamiento satisfactorio del sistema de conducción (conductores, aislamiento y accesorios).</div>
-            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>13:30 – 14:45</div>
+            <div class="ponencia-ponente"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Ing. Juan Manuel Máximo León</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>13:30 – 14:45 (15 min preguntas y respuestas)</div>
           </div>
         </div>
-        <div class="ponencia-card" onclick="toggleP(this)" data-dia="26 mayo" data-tema="Perspectiva horizontal de una instalación eléctrica de utilización — Diseño, construcción y comprobación">
+
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="26 mayo" data-tema="Perspectiva horizontal de una instalación eléctrica de utilización - Diseño, construcción y comprobación de las instalaciones eléctricas.">
           <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
           <div class="ponencia-info">
-            <div class="ponencia-tema">Perspectiva horizontal de una instalación eléctrica de utilización — Diseño, construcción y comprobación.</div>
+            <div class="ponencia-tema">Perspectiva horizontal de una instalación eléctrica de utilización - Diseño, construcción y comprobación de las instalaciones eléctricas.</div>
             <div class="ponencia-eslogan">Diseño, construcción y verificación de las instalaciones eléctricas.</div>
-            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>14:45 – 16:00</div>
+            <div class="ponencia-ponente"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>M. en C. Miriam F. Sánchez Galván</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>14:45 – 16:00 (15 min preguntas y respuestas)</div>
           </div>
         </div>
       </div>
 
+      <!-- ── DÍA 27 MAYO: Instalaciones Eléctricas en Alta Tensión ── -->
       <div class="day-section">
         <div class="day-header"><div class="day-badge">27 / Mayo / 2026</div><div class="day-title">Instalaciones Eléctricas en Alta Tensión</div></div>
-        <div class="ponencia-card" onclick="toggleP(this)" data-dia="27 mayo" data-tema="Instalaciones eléctricas de potencia — Requisitos eléctricos fundamentales">
+
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="27 mayo" data-tema="Controles de ingeniería para la gestión segura, a la operación y a la actividad de trabajo en instalaciones eléctricas de potencia.">
           <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
           <div class="ponencia-info">
             <div class="ponencia-tema">Controles de ingeniería para la gestión segura, a la operación y a la actividad de trabajo en instalaciones eléctricas de potencia.</div>
             <div class="ponencia-eslogan">Funcionamiento satisfactorio a través de la comunicación eficiente en las redes.</div>
-            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>11:00 – 12:15</div>
+            <div class="ponencia-ponente"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>M. en C. Jorge Obed Guevara Madrigal</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>11:00 – 12:15 (15 min preguntas y respuestas)</div>
           </div>
         </div>
-        <div class="ponencia-card" onclick="toggleP(this)" data-dia="27 mayo" data-tema="Instalaciones eléctricas de potencia — Requisitos mecánicos fundamentales">
+
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="27 mayo" data-tema="Instalaciones eléctricas de potencia – Requisitos eléctricos fundamentales.">
           <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
           <div class="ponencia-info">
-            <div class="ponencia-tema">Instalaciones eléctricas de potencia — Requisitos mecánicos fundamentales.</div>
-            <div class="ponencia-eslogan">Requisitos para el funcionamiento satisfactorio de estructuras mecánicas y conductores de líneas aéreas.</div>
-            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12:15 – 13:30</div>
+            <div class="ponencia-tema">Instalaciones eléctricas de potencia – Requisitos eléctricos fundamentales.</div>
+            <div class="ponencia-eslogan">Requisitos para el funcionamiento satisfactorio en condiciones de operación: normal, transitoria y de falla.</div>
+            <div class="ponencia-ponente"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Participación especial</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12:15 – 13:30 (15 min preguntas y respuestas)</div>
           </div>
         </div>
-        <div class="ponencia-card" onclick="toggleP(this)" data-dia="27 mayo" data-tema="Controles de ingeniería para la gestión segura, operación y actividad de trabajo en instalaciones eléctricas">
+
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="27 mayo" data-tema="Instalaciones eléctricas de potencia – Requisitos mecánicos fundamentales.">
           <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
           <div class="ponencia-info">
             <div class="ponencia-tema">Instalaciones eléctricas de potencia – Requisitos mecánicos fundamentales.</div>
             <div class="ponencia-eslogan">Requisitos para el funcionamiento satisfactorio de las estructuras mecánicas y conductores de las líneas aéreas en condiciones normales y excepcionales.</div>
-            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>13:30 – 14:45</div>
+            <div class="ponencia-ponente"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Participación especial</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>13:30 – 14:45 (15 min preguntas y respuestas)</div>
           </div>
         </div>
       </div>
 
+      <!-- ── DÍA 28 MAYO: Trabajos de Modificación de la NOM-001-SEDE-2012 ── -->
       <div class="day-section">
         <div class="day-header"><div class="day-badge">28 / Mayo / 2026</div><div class="day-title">Trabajos de Modificación de la NOM-001-SEDE-2012</div></div>
-        <div class="ponencia-card" onclick="toggleP(this)" data-dia="28 mayo" data-tema="Retos y desafíos en el proceso de modificación de la NOM-001-SEDE-2012">
+
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="28 mayo" data-tema="Retos y desafíos en el proceso de modificación de la NOM-00-SEDE-2012.">
           <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
           <div class="ponencia-info">
-            <div class="ponencia-tema">Retos y desafíos en el proceso de modificación de la NOM-001-SEDE-2012.</div>
+            <div class="ponencia-tema">Retos y desafíos en el proceso de modificación de la NOM-00-SEDE-2012.</div>
             <div class="ponencia-eslogan">Acciones para la NOM-001-SEDE que regule de manera efectiva las instalaciones eléctricas de los usuarios.</div>
-            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>11:00 – 12:15</div>
+            <div class="ponencia-ponente"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Ing. Bulmaro Sánchez Hernández / Ing. Manuel Germán López Flores</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>11:00 – 12:15 (15 min preguntas y respuestas)</div>
           </div>
         </div>
-        <div class="ponencia-card" onclick="toggleP(this)" data-dia="28 mayo" data-tema="Ley de infraestructura de la calidad — Autoridades normalizadoras y proceso de modificación de NOM-001-SEDE">
+
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="28 mayo" data-tema="Ley de infraestructura de la calidad – Autoridades normalizadoras y el proceso de modificación de NOM-00-SEDE.">
           <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
           <div class="ponencia-info">
-            <div class="ponencia-tema">Ley de infraestructura de la calidad — Autoridades normalizadoras y proceso de modificación de NOM-001-SEDE.</div>
+            <div class="ponencia-tema">Ley de infraestructura de la calidad – Autoridades normalizadoras y el proceso de modificación de NOM-00-SEDE.</div>
             <div class="ponencia-eslogan">Trazabilidad legal en la NOM-001-SEDE con base en el sistema de la infraestructura de la calidad.</div>
-            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12:15 – 13:30</div>
+            <div class="ponencia-ponente"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Ing. Luis Ivan Hernández Becerril</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12:15 – 13:30 (15 min preguntas y respuestas)</div>
           </div>
         </div>
-        <div class="ponencia-card" onclick="toggleP(this)" data-dia="28 mayo" data-tema="Evaluación de la conformidad de la NOM-001-SEDE conforme a la Ley de Infraestructura de la Calidad">
+
+        <div class="ponencia-card" onclick="toggleP(this)" data-dia="28 mayo" data-tema="Evaluación de la conformidad de la NOM-001-SEDE conforme a la Ley de Infraestructura de la Calidad.">
           <div class="ponencia-check"><svg width="13" height="13" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
           <div class="ponencia-info">
             <div class="ponencia-tema">Evaluación de la conformidad de la NOM-001-SEDE conforme a la Ley de Infraestructura de la Calidad.</div>
             <div class="ponencia-eslogan">Cambios / Innovación del PEC de la NOM-001-SEDE.</div>
-            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>13:30 – 14:45</div>
+            <div class="ponencia-ponente"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Participación especial</div>
+            <div class="ponencia-horario"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>13:30 – 14:45 (15 min preguntas y respuestas)</div>
           </div>
         </div>
       </div>
