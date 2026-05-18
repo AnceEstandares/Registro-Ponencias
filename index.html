@@ -272,8 +272,11 @@
         </div>
       </div>
       <div class="error-msg" id="err0">Por favor completa todos los campos obligatorios.</div>
+      <div class="error-msg" id="err0dup" style="background:#fff0f0;border:1px solid #ffcccc;color:#c0392b;border-radius:8px;padding:14px 16px;font-size:13px;margin-top:12px;display:none;">
+        ⚠️ Este correo electrónico ya está registrado en el congreso. Si crees que es un error, contacta a los organizadores.
+      </div>
       <div class="btn-row">
-        <button class="btn btn-primary" onclick="goTo1()">Continuar <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button class="btn btn-primary" id="btnContinuar" onclick="goTo1()">Continuar <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
     </div>
 
@@ -424,7 +427,7 @@
 
 <script>
   // ─── CONFIGURA AQUÍ TU APPS SCRIPT URL ───
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzsmxKpb2HAkDxXogSZ-xM-EweriOo99hu4dQo86Mxx2jyZnHc7WoKYMwP8dJNJZrh-/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzMNCISxUz-cxS5Ju6mzFP91aUiQdAz6v5GZXL-h08hf-kuXv53toMcSTWHXTMoRQj3/exec';
 
   function toggleP(el) { el.classList.toggle('selected'); }
 
@@ -439,11 +442,43 @@
     window.scrollTo({top:0,behavior:'smooth'});
   }
 
-  function goTo1() {
+  async function goTo1() {
     const ids = ['nombre','correo','celular','empresa','cargo','pais','estado','giro'];
-    const err = document.getElementById('err0');
-    if (ids.some(id => !document.getElementById(id).value.trim())) { err.style.display='block'; return; }
-    err.style.display='none'; goTo(1);
+    const err0    = document.getElementById('err0');
+    const err0dup = document.getElementById('err0dup');
+    const btn     = document.getElementById('btnContinuar');
+
+    // Validar campos obligatorios
+    if (ids.some(id => !document.getElementById(id).value.trim())) {
+      err0.style.display = 'block';
+      err0dup.style.display = 'none';
+      return;
+    }
+    err0.style.display = 'none';
+    err0dup.style.display = 'none';
+
+    // Verificar duplicado en Google Sheet
+    const correo = document.getElementById('correo').value.trim().toLowerCase();
+    btn.innerHTML = '<span class="spinner"></span> Verificando...';
+    btn.disabled = true;
+
+    try {
+      const r = await fetch(APPS_SCRIPT_URL + '?action=checkCorreo&correo=' + encodeURIComponent(correo));
+      const data = await r.json();
+      if (data.existe) {
+        err0dup.style.display = 'block';
+        btn.innerHTML = 'Continuar <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+        btn.disabled = false;
+        return;
+      }
+    } catch(e) {
+      // Si falla la consulta (sin conexión o script no configurado), dejar pasar
+      console.warn('No se pudo verificar duplicado:', e);
+    }
+
+    btn.innerHTML = 'Continuar <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    btn.disabled = false;
+    goTo(1);
   }
 
   function generateID() {
