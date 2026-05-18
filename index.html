@@ -196,9 +196,128 @@
     .ps-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text); }
     .ps-day { background: var(--navy); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
 
+    /* APERTURA / CIERRE */
+    .apertura-block, .cierre-block {
+      background: var(--blue-lt); border-left: 4px solid var(--navy);
+      border-radius: 0 10px 10px 0; padding: 16px 20px; margin-bottom: 28px;
+    }
+    .apertura-title, .cierre-title {
+      font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 800;
+      color: var(--navy); margin-bottom: 10px; text-transform: uppercase; letter-spacing: .05em;
+    }
+    .cierre-title { margin-bottom: 0; }
+    .apertura-list { list-style: none; padding: 0; margin: 0; }
+    .apertura-list li {
+      font-size: 14px; color: var(--text); padding: 5px 0;
+      border-bottom: 1px solid var(--border); line-height: 1.5;
+    }
+    .apertura-list li:last-child { border-bottom: none; }
+    .apertura-list li strong { color: var(--navy); font-weight: 700; }
+    .cierre-block { margin-top: 24px; margin-bottom: 0; }
+
     .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.4); border-top-color: white; border-radius: 50%; animation: spin .7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .error-msg { background: #fff0f0; border: 1px solid #ffcccc; color: #c0392b; border-radius: 8px; padding: 12px 16px; font-size: 13px; margin-top: 16px; display: none; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+
+      body { background: #f4f6fb !important; }
+
+      header {
+        background: linear-gradient(135deg, #081F40 0%, #063060 60%, #E8B93B 100%) !important;
+        -webkit-print-color-adjust: exact !important;
+      }
+      header::before { display: none; }
+
+      .header-text h1 { color: #FFFFFF !important; }
+      .header-text h1 span { color: #E8B93B !important; }
+      .header-text p { color: rgba(255,255,255,.75) !important; }
+      .badge { background: rgba(21,140,255,.3) !important; color: #a8d4ff !important; }
+
+      .date-chip {
+        background: rgba(255,255,255,.15) !important;
+        border: 1px solid rgba(255,255,255,.3) !important;
+        color: #FFFFFF !important;
+      }
+      .date-chip small { color: rgba(255,255,255,.7) !important; }
+
+      .logo-img { display: block !important; }
+
+      /* Stepper */
+      .step-num { background: #dce3f0 !important; color: #6b7a99 !important; }
+      .step.active .step-num { background: #E8B93B !important; color: #FFFFFF !important; }
+      .step.done .step-num { background: #063060 !important; color: #FFFFFF !important; }
+      .step-label { color: #6b7a99 !important; }
+      .step.active .step-label, .step.done .step-label { color: #063060 !important; }
+      .step-line { background: #dce3f0 !important; }
+      .step-line.done { background: #063060 !important; }
+
+      /* Card */
+      .card { box-shadow: none !important; border: 1px solid #dce3f0 !important; }
+      .main { margin-top: 16px !important; }
+
+      /* Day badge */
+      .day-badge { background: #063060 !important; color: #FFFFFF !important; }
+
+      /* Ponencia cards */
+      .ponencia-card { border: 1.5px solid #dce3f0 !important; page-break-inside: avoid; }
+      .ponencia-card.selected { border-color: #063060 !important; background: #eef2fb !important; }
+      .ponencia-check {
+        border: 2px solid #dce3f0 !important;
+        background: #FFFFFF !important;
+      }
+      .ponencia-card.selected .ponencia-check {
+        background: #063060 !important;
+        border-color: #063060 !important;
+      }
+      .ponencia-card.selected .ponencia-check svg { display: block !important; }
+      .ponencia-check svg path { stroke: white !important; }
+
+      .ponencia-horario {
+        background: rgba(21,140,255,.1) !important;
+        color: #E8B93B !important;
+      }
+
+      /* Apertura / Cierre blocks */
+      .apertura-block, .cierre-block {
+        background: #e8f3ff !important;
+        border-left: 4px solid #063060 !important;
+      }
+      .apertura-list li strong { color: #063060 !important; }
+
+      /* ID box */
+      .id-box {
+        background: linear-gradient(135deg, #081F40, #063060) !important;
+        color: #FFFFFF !important;
+      }
+      .id-box .id-number { color: #FFFFFF !important; }
+      .id-box .lbl { color: rgba(255,255,255,.6) !important; }
+      .id-box .id-sub { color: rgba(255,255,255,.5) !important; }
+
+      /* Aviso */
+      .aviso { background: #e8f3ff !important; border-left: 4px solid #E8B93B !important; }
+
+      /* Buttons — hide navigation buttons, show print button */
+      .btn-outline { display: none !important; }
+      #btnReg { display: none !important; }
+      #btnContinuar { display: none !important; }
+
+      /* Summary */
+      .ps-day { background: #063060 !important; color: #FFFFFF !important; }
+
+      /* Confirm icon */
+      .confirm-icon {
+        background: linear-gradient(135deg, #063060, #E8B93B) !important;
+      }
+
+      /* Errors hidden */
+      .error-msg { display: none !important; }
+
+      /* Page settings */
+      @page { margin: 1cm; }
+    }
 
     @media (max-width: 640px) {
       .header-inner { flex-direction: column; gap: 20px; padding: 32px 20px; }
@@ -284,6 +403,16 @@
     <div class="screen" id="screen1">
       <h2>Selección de Ponencias</h2>
       <p class="subtitle">Elige las ponencias a las que planeas asistir. Asistir a las 9 te hace acreedor a una constancia de participación.</p>
+
+      <!-- ── APERTURA ── -->
+      <div class="apertura-block">
+        <div class="apertura-title">Apertura 12:00 a 12:15 p.m</div>
+        <ul class="apertura-list">
+          <li><strong>Andrea Genoveva Solano Rendón</strong> - Jefa de la Unidad de Normatividad, Competitividad y Competencia Secretaría de Economía.</li>
+          <li><strong>Aquiles Manuel López Marín</strong> - Presidente CANAME.</li>
+          <li><strong>Jesús Martín Ricárdez Barberá</strong> - Presidente del CONANCE.</li>
+        </ul>
+      </div>
 
       <!-- ── DÍA 26 MAYO: Instalaciones Eléctricas en Baja Tensión ── -->
       <div class="day-section">
@@ -391,6 +520,12 @@
       </div>
 
       <div class="error-msg" id="err1">Selecciona al menos una ponencia para continuar.</div>
+
+      <!-- ── CIERRE ── -->
+      <div class="cierre-block">
+        <div class="cierre-title">Cierre 14:45 a 15:00 p.m</div>
+      </div>
+
       <div class="btn-row">
         <button class="btn btn-outline" onclick="goTo(0)">← Regresar</button>
         <button class="btn btn-primary" id="btnReg" onclick="enviarRegistro()">Completar registro <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
